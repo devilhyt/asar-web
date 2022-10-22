@@ -1,0 +1,99 @@
+{
+    "welcomeMessage": "歡迎來到 Asar !",
+    "username": "使用者名稱",
+    "password": "密碼",
+    "login": "登入",
+    "logout": "登出",
+    "project": "專案",
+    "create": "創建",
+    "delete": "刪除",
+    "export": "匯出",
+    "train": "訓練",
+    "load": "載入",
+    "config": "設定",
+    "edit":"編輯",
+    "name": "名稱",
+    "leave": "離開",
+    "stories": "故事",
+    "rules": "規則",
+    "intents": "意圖",
+    "actions": "動作",
+    "responses": "回覆",
+    "entities": "實體",
+    "slots": "槽位",
+    "synonyms": "同義字",
+    "createProject": "創建專案",
+    "deleteProject": "刪除專案",
+    "createFile": "創建檔案",
+    "deleteFile": "刪除檔案",
+    "deleteProjectConfirmation": "確定要刪除 {project} 嗎?",
+    "deleteFileConfirmation": "確定要刪除 {file} 嗎?",
+    "/api":{
+        "auth": {
+            "login": {
+                "success": "登入成功 !",
+                "loginFailed": "登入失敗",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "logout": {
+                "success": "已登出 !",
+                "unexpectedError": "{msg}"
+            }
+        },
+        "model": {
+            "load": {
+                "success":"{project} 載入中",
+                "projectIsTraining": "不能讀取還在訓練中的 {project}",
+                "stillLoadingPreviousModel": "還在讀取先前的專案",
+                "rasaApiConnectionError": "無法連接 Rasa API 伺服器",
+                "noRasaApiUrlProvided": "請提供 RASA_API_URL",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "train": {
+                "success": "{project} 訓練中",
+                "stillLoadingPreviousModel": "還在載入先前的專案",
+                "stillTrainingPreviousModel": "還在訓練先前的專案",
+                "rasaApiConnectionError": "無法連接 Rasa API 伺服器",
+                "noRasaApiUrlProvided": "請提供 RASA_API_URL",
+                "noAsarApiUrlProvided": "請提供 ASAR_API_URL.",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            }
+        },
+        "project": {
+            "create": {
+                "success": "{project} 已創建",
+                "duplicateNames": "專案名稱不能重複",
+                "invalidName": "{project} 是無效的專案名稱",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "delete": {
+                "success": "{project} 已刪除",
+                "invalidName": "{project} 是無效的專案名稱",
+                "targetDoesNotExist": "{project} 不存在",  
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            }  
+        },
+        "#comment" : "file 包含 story, rule, intent, action, response, entity, slot, synonyms",
+        "file": { 
+            "create": {
+                "success": "{file} 已創建",
+                "duplicateNames": "檔案名稱不能重複",
+                "invalidName": "{file} 是無效的檔案名稱",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "delete": {
+                "success": "{file} 已刪除",
+                "invalidName": "{file} 是無效的檔案名稱",
+                "targetDoesNotExist": "{file} 不存在",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            }
+        }
+    }
+}

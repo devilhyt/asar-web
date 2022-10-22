@@ -1,0 +1,99 @@
+{
+    "welcomeMessage": "Welcome to Asar !",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "logout": "Logout",
+    "project": "Project",
+    "create": "Create",
+    "delete": "Delete",
+    "export": "Export",
+    "train": "Train",
+    "load": "Load",
+    "config": "Config",
+    "edit":"Edit",
+    "name": "Name",
+    "leave": "Leave",
+    "stories": "Stories",
+    "rules": "Rules",
+    "intents": "Intents",
+    "actions": "Actions",
+    "responses": "Responses",
+    "entities": "Entities",
+    "slots": "Slots",
+    "synonyms": "Synonyms",
+    "createProject": "Create Project",
+    "deleteProject": "Delete Project",
+    "createFile": "Create File",
+    "deleteFile": "Delete File",
+    "deleteProjectConfirmation": "Are you sure you want to delete {project} ?",
+    "deleteFileConfirmation": "Are you sure you want to delete {file} ?",
+    "/api":{
+        "auth": {
+            "login": {
+                "success": "You have successfully logged in !",
+                "loginFailed": "Login Failed",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "logout": {
+                "success": "You have successfully logged out !",
+                "unexpectedError": "{msg}"
+            }
+        },
+        "model": {
+            "load": {
+                "success": "Loading {project}",
+                "projectIsTraining": "Cannot load {project} which is training.",
+                "stillLoadingPreviousModel": "Still performing previous loading task.",
+                "rasaApiConnectionError": "Cannot connect to Rasa API server.",
+                "noRasaApiUrlProvided": "Please provide RASA_API_URL.",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "train": {
+                "success": "Training {project}",
+                "stillLoadingPreviousModel": "Still performing previous loading task.",
+                "stillTrainingPreviousModel": "Still performing previous training task",
+                "rasaApiConnectionError": "Cannot connect to Rasa API server.",
+                "noRasaApiUrlProvided": "Please provide RASA_API_URL.",
+                "noAsarApiUrlProvided": "Please provide ASAR_API_URL.",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            }
+        },
+        "project": {
+            "create": {
+                "success": "{project} created",
+                "duplicateNames": "Project name must not be duplicated",
+                "invalidName": "{project} is invalid",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "delete": {
+                "success": "{project} deleted",
+                "invalidName": "{project} is invalid",
+                "targetDoesNotExist": "{project} does not exist",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            }
+        },
+        "#comment" : "file including story, rule, intent, action, response, entity, slot, synonyms.",
+        "file": { 
+            "create": {
+                "success": "{file} created",
+                "duplicateNames": "File name must not be duplicated",
+                "invalidName": "{file} is invalid",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "delete": {
+                "success": "{file} deleted",
+                "invalidName": "{file} is invalid",
+                "targetDoesNotExist": "{file} does not exist",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            }
+        }
+    }
+}

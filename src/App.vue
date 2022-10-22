@@ -1,30 +1,59 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <LocaleSwitch class="locale-switch" />
+    <CustomMessage :messages="messages"/>
+    <Suspense>
+        <router-view />
+    </Suspense>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+    import { messages } from './assets/utils/message.js'
 
-nav {
-  padding: 30px;
-}
+    export default {
+        name:["App"],
+        created() {
+            document.body.style.backgroundColor = "#333333"
+        },
+        setup(){
+            return {
+                messages: messages.value
+            }
+        }
+    }
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style >
+    @import url("assets/noto.css");
+
+    .locale-switch{
+        position: absolute;
+        bottom: 18px;
+        left: 46px;
+        z-index: 30;
+    }
+
+    body, html {
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    #app {
+        font-family: 'Noto Sans TC', '微軟正黑體', sans-serif;
+        color: #000000;
+    }
+
+    nav {
+        padding: 30px;
+    }
+
+    nav a {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    nav a.router-link-exact-active {
+        color: #42b983;
+    }
 </style>
