@@ -39,12 +39,10 @@
             top: 18px;
         }
     }
-
     .bottom {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         color: #E0E0E0;
     }
-    
 </style>

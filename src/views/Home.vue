@@ -228,28 +228,23 @@
             right: 24px;
         }
     }
-
     .bottom {
         display: flex;
         flex-direction: column;
     }
-
     .sidePanel {
         position: absolute;
         width: 200px;
         height: calc(100vh - 72px);
         background-color:#2C2F33;
     }
-
     .home-content {
         margin-left: 200px;
     }
-
     .scroll-panel {
         width: 100%;
         height: calc(100vh - 72px);
     }
-
     .project-card {
         position: relative;
         background-color: #FFFFFF;
@@ -258,118 +253,110 @@
         height: 160px;
         display: inline-block;
         margin-left: calc((100vw - 200*3px)/5);
-        
     }
-
-    .card-title{
+    .card-title {
         text-align: center;
     }
-
-    .deleteBtn{
+    .deleteBtn {
         position: absolute;
         top: 0px;
         right: 0px;
         transform: scale(0.7);
     }
-    .editBtn{
+    .editBtn {
         position: absolute;
         bottom: 6px;
         left: 26px;
         width: 100px;
     }
-
-    :deep.createProjectModal{
-        color: #E0E0E0;
-        .modal-container {
-            width: 300px;
-            height: 180px;
-            background: #222222;
-        }
-        .header{
-            font-size: 28px;
-            text-align: center;
-        }
-        .content{
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-        .footer{
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            .createProjectBtn{
-                width: 80px;
-            }
-        }
-    }
-
-    :deep.deleteProjectModal{
-        color: #E0E0E0;
-        .modal-container {
-            width: 300px;
-            height: 180px;
-            background: #222222;
-        }
-        .header{
-            font-size: 28px;
-            text-align: center;
-        }
-        .content{
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-        .footer{
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            .deleteProjectBtn{
-                width: 80px;
-            }
-        }
-    }
-
-    :deep.onConfirmDelete{
-        color: #E0E0E0;
-        .modal-container {
-            width: 300px;
-            height: 180px;
-            background: #222222;
-        }
-        .content{
-            font-size: 24px;
-            margin-top: 10px;
-            margin-left: 24px;
-        }
-        .footer{
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            .deleteProjectBtn{
-                width: 80px;
-            }
-        }
-    }
-
-    :deep.p-panelmenu {
+    .p-panelmenu:deep() {
         .p-panelmenu-header-link {
             border: 0px;
             background:#2C2F33;
             color: #E0E0E0;
         }
-        .p-menuitem{
+        .p-menuitem {
             background:#33363a;
         }
-        .p-panelmenu-content{
+        .p-panelmenu-content {
             border: 0px;
-            .p-menuitem .p-menuitem-link{
-                .p-menuitem-text{
+            .p-menuitem .p-menuitem-link {
+                .p-menuitem-text {
                     color: #E0E0E0;
                 }
-                .p-menuitem-icon{
+                .p-menuitem-icon {
                     color: #E0E0E0;
                 }
             }
         }
     }
-
+    .createProjectModal:deep() {
+        color: #E0E0E0;
+        .modal-container {
+            width: 300px;
+            height: 180px;
+            background: #222222;
+        }
+        .header {
+            font-size: 28px;
+            text-align: center;
+        }
+        .content {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            .createProjectBtn {
+                width: 80px;
+            }
+        }
+    }
+    .deleteProjectModal:deep() {
+        color: #E0E0E0;
+        .modal-container {
+            width: 300px;
+            height: 180px;
+            background: #222222;
+        }
+        .header {
+            font-size: 28px;
+            text-align: center;
+        }
+        .content {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            .deleteProjectBtn {
+                width: 80px;
+            }
+        }
+    }
+    .onConfirmDelete:deep() {
+        color: #E0E0E0;
+        .modal-container {
+            width: 300px;
+            height: 180px;
+            background: #222222;
+        }
+        .content {
+            font-size: 24px;
+            margin-top: 10px;
+            margin-left: 24px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            .deleteProjectBtn {
+                width: 80px;
+            }
+        }
+    }
 </style>

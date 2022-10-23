@@ -29,7 +29,7 @@
 </script>
 
 <style scoped>
-    .switch{
+    .switch {
         width: 100px;
         height: 36.72px;
         text-align: center;

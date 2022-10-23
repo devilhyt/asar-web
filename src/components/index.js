@@ -16,6 +16,8 @@ import LocaleSwitch from './LocaleSwitch'
 import Modal from './Modal'
 import CustomAutoComplete from './CustomAutoComplete'
 import EditorLayout from "./EditorLayout"
+import StartNode from "./StartNode"
+import EndNode from "./EndNode"
 import IntentNode from "./IntentNode"
 import ActionNode from "./ActionNode"
 import ResponseNode from "./ResponseNode"
@@ -39,6 +41,8 @@ export default {
     Modal,
     CustomAutoComplete,
     EditorLayout,
+    StartNode,
+    EndNode,
     IntentNode,
     ActionNode,
     ResponseNode,

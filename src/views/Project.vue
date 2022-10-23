@@ -167,19 +167,16 @@ import { addBackendMessage } from '@/assets/utils/message.js'
             left: 18px;
         }
     }
-    
     .bottom {
         display: flex;
         flex-direction: column;
     }
-
     .sidePanel {
         position: absolute;
         width: 200px;
         height: calc(100vh - 72px);
         background-color:#2C2F33;
-    }
-    
+    } 
     .file-manager {
         margin-left: 200px;
         .title {
@@ -202,106 +199,100 @@ import { addBackendMessage } from '@/assets/utils/message.js'
             }
         }
     }
-
     .controls {
         text-align: right;
     }
-
     .scroll-panel {
         color: #E0E0E0;
         width: 100%;
         height: 800px;
     }
-
-    :deep.p-panelmenu {
+    .p-panelmenu:deep() {
         .p-panelmenu-header-link {
             border: 0px;
             background:#2C2F33;
             color: #E0E0E0;
         }
-        .p-menuitem{
+        .p-menuitem {
             background:#33363a;
         }
-        .p-panelmenu-content{
+        .p-panelmenu-content {
             border: 0px;
-            .p-menuitem .p-menuitem-link{
-                .p-menuitem-text{
+            .p-menuitem .p-menuitem-link {
+                .p-menuitem-text {
                     color: #E0E0E0;
                 }
-                .p-menuitem-icon{
+                .p-menuitem-icon {
                     color: #E0E0E0;
                 }
             }
         }
     }
-
-    :deep.createFileModal{
+    .createFileModal:deep() {
         color: #E0E0E0;
         .modal-container {
             width: 300px;
             height: 180px;
             background: #222222;
         }
-        .header{
+        .header {
             font-size: 28px;
             text-align: center;
         }
-        .content{
+        .content {
             margin-top: 20px;
             margin-left: 20px;
         }
-        .footer{
+        .footer {
             position: absolute;
             bottom: 5px;
             right: 5px;
-            .createFileBtn{
+            .createFileBtn {
                 width: 80px;
             }
         }
     }
-
-    :deep.deleteFileModal{
+    .deleteFileModal:deep() {
         color: #E0E0E0;
         .modal-container {
             width: 300px;
             height: 180px;
             background: #222222;
         }
-        .header{
+        .header {
             font-size: 28px;
             text-align: center;
         }
-        .content{
+        .content {
             margin-top: 20px;
             margin-left: 20px;
         }
-        .footer{
+        .footer {
             position: absolute;
             bottom: 5px;
             right: 5px;
-            .deleteFileBtn{
+            .deleteFileBtn {
                 width: 80px;
             }
         }
     }
-
-    :deep.onConfirmDelete{
+    .onConfirmDelete:deep() {
         color: #E0E0E0;
         .modal-container {
             width: 300px;
             height: 180px;
             background: #222222;
         }
-        .content{
+        .content {
             font-size: 24px;
             margin-top: 10px;
             margin-left: 24px;
         }
-        .footer{
+        .footer {
             position: absolute;
             bottom: 5px;
             right: 5px;
-            .deleteFileBtn{
+            .deleteFileBtn {
                 width: 80px;
             }
         }

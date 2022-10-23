@@ -68,8 +68,7 @@
         font-size: 34px;
     }
 
-    .p-input-icon-right:deep > .p-inputtext {
+    .p-input-icon-right:deep(.p-inputtext) {
         padding-right: 0.429rem;
     }
-
 </style>

@@ -8,11 +8,10 @@
     })
 </script>
 
-
 <template>
     <div class='node'>
         <Handle :id="id + '_in'" type="target" :position="Position.Top" />
-        <div>Response</div>
+        <div>{{ $t('response') }}</div>
         <CustomAutoComplete v-model="response_temp" class="responseAutoComplete" :data_list='response_list' @onChange="onResponseChange" inputStyle="text-align:center; font-size: 6px;" />
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
@@ -52,12 +51,13 @@
     }
     .responseAutoComplete {
         height: 18px;
-        left: 10px;
+        left: 6px;
+        margin-top: 10px;
         margin-right: 10px;
+        :deep() {
+            button {
+                width: 15px;
+            }
+        }
     }
-</style>
-
-<style lang="scss">
-
-
 </style>

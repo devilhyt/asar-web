@@ -1,7 +1,6 @@
 <script setup>
     import { Background, Controls, MiniMap, VueFlow, useVueFlow, graphPosToZoomedPos} from '@braks/vue-flow'
     import { ref } from 'vue'
-    import { initialElements } from '../assets/flow/initial-elements.js'
     import { useRoute } from 'vue-router'
     import { getAllFileData, getFileList, updateFile , getFileData, getBultinActionList} from '../assets/utils/backend.js'
     import { nanoid } from 'nanoid'
@@ -19,46 +18,59 @@
 
     var selectedItem
 
-    const listbox_items = [
-        {
-            type: "intent",
-            name: "Intent"
+    const listbox_items = ["intent", "action", "response", "slot_was_set"]
+
+    const defaultElements = [
+        { 
+            id: 'start',
+            type: 'start',
+            position: { x: 0, y: 0 },
+            data: {
+                "type":"start"
+            }
         },
-        {
-            type: "action",
-            name: "Action"
-        },
-        {
-            type: "response",
-            name: "Response"
-        },
-        {
-            type: "slot_was_set",
-            name: "slot_was_set"
+        { 
+            id: 'end',
+            type: 'end',
+            data:{"type":"end"},
+            position: { x: 0, y: 600 }
         }
     ]
 
-    const { addNodes, getEdges, getNode, getNodes, onPaneReady, onConnect, addEdges,setNodes,setEdges, setTransform, toObject, viewport, getTransform, project} = useVueFlow({node:initialElements, deleteKeyCode:"Delete"})
+    const { 
+        addNodes, getEdges, getNode, getNodes, onPaneReady,
+        onConnect, addEdges,setNodes,setEdges, setTransform, toObject,
+        project, getSelectedNodes, fitView
+    } = useVueFlow({node:defaultElements, deleteKeyCode:"Delete"})
 
-    const elements = ref(initialElements)
+    const elements = ref([])
 
     async function onSave(){
         let body = {
             "content": toObject()
         }
-        await updateFile(params, "stories", body)
+        let response = await updateFile(params, "stories", body)
+        console.log(response)
     }
 
-    onPaneReady(({ fitView }) => {
-        fitView()
-    })
+    const undeletable_list = ['start', 'end']
+
+    document.addEventListener('keydown', (event) => {
+        if(event.key == "Delete"){
+            if(getSelectedNodes.value.length != 0){
+                if(undeletable_list.includes(getSelectedNodes.value[0].type)){
+                    event.stopPropagation()
+                }
+            }
+        }
+    }, false);
 
     onConnect((params) => {
         if(getNode.value(params.target).position.y < getNode.value(params.source).position.y){
             return
         }
         if(getNode.value(params.target).type == "action" || getNode.value(params.target).type == "response"){
-            if(getEdges.value.filter(edge => (edge.source == params.source && (edge.targetNode.type == "action" || edge.targetNode.type == "response"))).length > 0){
+            if(getEdges.value.filter(edge => (edge.source == params.source (edge.targetNode.type == "action" || edge.targetNode.type == "response"))).length > 0){
                 return
             }
         }
@@ -75,10 +87,9 @@
 
     const logToObject = () => console.log(toObject())
 
-    async function addCustomNode(type, name){
+    async function addCustomNode(type){
         let data = {
             type: type,
-            name: name
         }
         switch(type){
             case "intent":
@@ -100,36 +111,25 @@
 
         addNodes([{
             id: nanoid(),
-            position: { x: x-90, y: y-100 },
             type: type,
-            data: data
+            data: data,
+            position: { x: x-90, y: y-100 }
         }])
     }
 
-    function addEnd(){
-        if(!getNodes.value.map(x => x.id).includes("end")){
-            addNodes([{
-                id: 'end',
-                type: 'output',
-                label: 'End',
-                position: { x: 250, y: 405 },
-                data: {
-                    "type": "end"
-                }
-            }])
-        }
-    }
-
     async function onRestore (){
-        const inital_elements = await getFileData(params, "stories")
-        if (Object.keys(inital_elements).length != 0) {
-            const [x = 0, y = 0] = inital_elements.position
-            setNodes(inital_elements.nodes)
-            setEdges(inital_elements.edges)
-            setTransform({ x, y, zoom: inital_elements.zoom || 0 })
+        let initialElements = await getFileData(params, "stories")
+        if (Object.keys(initialElements).length != 0) {
+            const [x = 0, y = 0] = initialElements.position
+            setNodes(initialElements.nodes)
+            setEdges(initialElements.edges)
+            setTransform({ x, y, zoom: initialElements.zoom || 0 })
+        }else{
+            elements.value = defaultElements
         }
+        fitView()
     }
-
+    
     onRestore()
     
 </script>
@@ -137,7 +137,7 @@
 <template>
     <EditorLayout>
         <template v-slot:top >
-            <Button label="Save" class='saveBtn' @click='onSave'/>
+            <Button label="Save" class='saveBtn' @click='onSave'>{{ $t('save') }}</Button>
         </template>
         <VueFlow v-model="elements" class="basicflow" :default-zoom="1.5" :min-zoom="0.2" :max-zoom="4">
             <Background pattern-color="#aaa" gap="8" />
@@ -145,16 +145,17 @@
             <Controls />
             <div class="list-box">
                 <span class="item" v-for="item in listbox_items" :key="item">
-                    <label>{{ item.name }}</label>
-                    <Button class='addBtn p-button-secondary' label='add' @click="addCustomNode(item.type, item.name)"/>
+                    <label>{{ $t(item) }}</label>
+                    <Button class='addBtn p-button-secondary' @click="addCustomNode(item)">{{ $t('add') }}</Button>
                 </span>
             </div>
-            <div class="controls">
-                <button style="background-color: #777777; color: white" @click="onRestore">Restore</button>
-                <button style="background-color: #425123; color: white" @click="addEnd">add end</button>
-                <button style="background-color: #123423; color: white" @click="logToObject">log toObject</button>
-            </div>
-            
+
+            <template #node-start>
+                <StartNode />
+            </template>
+            <template #node-end>
+                <EndNode />
+            </template>
             <template #node-intent="props">
                 <IntentNode v-bind="props" :intent_list="intent_list" :entity_data="entity_data" :entity_list="entity_list" />
             </template>
@@ -184,44 +185,16 @@
     .vue-flow {
         height: 880px;
     }
-
     .vue-flow__minimap {
         transform: scale(75%);
         transform-origin: bottom right;
     }
-
     .basicflow .vue-flow__node.dark {
-        background:#1C1C1C;color:#fffffb
+        background:#1C1C1C;
+        color:#fffffb;
     }
-
-    .basicflow .controls {
-        position:absolute;
-        left:10px;
-        top:10px;
-        z-index:4;
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:8px
-    }
-
-    .basicflow .controls button {
-        padding:5px;
-        border-radius:5px;
-        font-weight:500;
-        -webkit-box-shadow:0px 5px 10px 0px rgba(0,0,0,.3);
-        box-shadow:0 5px 10px #0000004d;
-        cursor:pointer
-    }
-
-    .basicflow .controls button:hover {
-        opacity:.8;
-        transform:scale(105%);
-        transition:.25s all ease
-    }
-
-    .list-box{
-        position:absolute;
+    .list-box {
+        position: absolute;
         width: 15rem;
         right: 10px;
         top: 10px;
@@ -230,7 +203,7 @@
         color: #1c1c1c;
         border-style: solid;
         border-bottom: 0px;
-        border-radius: 4px;
+        border-radius: 5px;
         .item {
             display: block;
             padding-top: 2px;
@@ -238,7 +211,7 @@
             border-top: 0px;
             border-left: 0px;
             border-right: 0px;
-            border-bottom: 1px;
+            border-bottom: 2px;
             border-style: solid;
             .addBtn {
                 position: absolute;
@@ -247,8 +220,7 @@
             }
         } 
     }
-    
-    .saveBtn{
+    .saveBtn {
         position: absolute;
         right: 10px;
         top: 19px;

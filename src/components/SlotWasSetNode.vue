@@ -8,23 +8,22 @@
     })
 </script>
 
-
 <template>
     <div class='node'>
         <Handle :id="id + '_in'" type="target" :position="Position.Top" />
         <div>
-            <label>slot_was_set</label>
+            <label>{{ $t('slot_was_set') }}</label>
             <Button class="plusBtn" icon="pi pi-plus" iconPos="right" @click="onAddSlot"/>
         </div>
         <div class="slot" v-for="(value, index) in data.slots" :key="(value, index)">
             <Button v-if="slots.length != 1" class="deleteBtn" icon="pi pi-trash" @click="onDeleteSlot(index)"/>
-            <label>slot</label>
+            <label>{{ $t('slot') }}</label>
             <CustomAutoComplete v-model="slot_temp_list[index]" class="slotAutoComplete" :data_list='slot_list' @onChange="onSlotChange(index)" inputStyle="font-size: 6px;" />
-
-            <label>value</label>
+            <br>
             <TriStateCheckbox class="value-check" v-model="value_check[index]" @click="onValueCheckChange(index)" />
+            <label>{{ $t('value') }}</label>
             <InputText v-if="value_check[index]" v-model="value['value']" class="input-value"/>
-            <label v-if="value_check[index] == null">null</label>
+            <label v-if="value_check[index] == null" class="tri-text">null</label>
         </div>
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
@@ -81,7 +80,7 @@
 </script>
 
 <style scoped lang="scss">
-    .node{
+    .node {
         color: #007d86;
         background-color: white;
         padding: 10px;
@@ -93,7 +92,7 @@
         border-style: solid;
         border-color: var(#222222);
     }
-    .plusBtn{
+    .plusBtn {
         position: absolute;
         border-width: initial;
         border-radius: initial;
@@ -102,51 +101,57 @@
         width: 15.5px;
         height: 15.5px;
         right: 8px;
-        top: 13px;
-    }
-    .slot{
-        text-align: left;
-        margin-top: 10px;
-        margin-left: 10px;
-    }
-    .slotAutoComplete{
-        display: inline-flex;
-        width: 110px;
-        height: 18px;
-        right: -20px;
-        top: 2px;
-    }
-    .deleteBtn{
-        position: absolute;
-        margin-top: -2px;
-        left: -1px;
-    }
-    .input-value {
-        position: absolute;
-        width: 94px;
-        height: 16px;
-        right: 8px;
-        margin-top: 5px;
-        font-size: 6px;
-    }
-    .value-check {
-        margin-left: 9px;
-        top: 3px;
-    }
-</style>
-
-<style lang="scss">
-    #app > div.bottom > div > div > div.vue-flow__viewport.vue-flow__container > div.vue-flow__transformationpane.vue-flow__container > div > div.vue-flow__node.vue-flow__node-slot_was_set.nopan.selectable > div {
-        div.slot > span > button {
-            width: 15px;
-        }
-        div.slot > button {
+        top: 8px;
+        :deep() {
             width: 24px;
             height: 24px;
             transform: scale(0.6);
         }
-        div.slot > div > div.p-checkbox-box {
-            transform: scale(0.79);
+    }
+    .slot {
+        text-align: left;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    .slotAutoComplete {
+        position: absolute;
+        width: 110px;
+        height: 12px;
+        right: 8px;
+        margin-top: 3px;
+        :deep() {
+            button {
+                width: 15px;
+            }
         }
+    }
+    .deleteBtn {
+        position: absolute;
+        margin-top: -1px;
+        left: -1px;
+        width: 24px;
+        height: 24px;
+        transform: scale(0.6);
+    }
+    .input-value {
+        position: absolute;
+        width: 110px;
+        height: 12px;
+        right: 8px;
+        margin-top: 4px;
+        font-size: 6px;
+    }
+    .value-check {
+        transform: scale(0.7);
+        top: 1.5px;
+        margin-left: -20px;
+        :deep() {
+            transform: scale(0.7);
+        }
+    }
+    .tri-text {
+        position: absolute;
+        right: 96px;
+        margin-top: 3px;
     }
 </style>
