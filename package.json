@@ -9,9 +9,8 @@
   "dependencies": {
     "@braks/vue-flow": "^0.4.41",
     "core-js": "^3.8.3",
-    "fs": "^0.0.1-security",
     "nanoid": "^4.0.0",
-    "primeicons": "^6.0.1",
+    "primeicons": "^5.0.0",
     "primevue": "^3.17.0",
     "vue": "^3.2.13",
     "vue-i18n": "^9.2.2",
