@@ -1,6 +1,8 @@
 require('./blocks/rasa.js')
 require('./blocks/advanced.js')
 
+import { pythonGenerator } from 'blockly/python'
+import Blockly from 'blockly/core';
 
 let toolbox = `
 <xml>
@@ -320,14 +322,32 @@ let toolbox = `
     <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE" ></category>
     <category name="Functions" colour="#777777" custom="PROCEDURE" ></category>
 </xml>`
-export default{
+
+
+pythonGenerator.INDENT = '    '
+
+let customTheme = Blockly.Theme.defineTheme('dark', {
+    'base': Blockly.Themes.Classic,
+    'componentStyles': {
+        'workspaceBackgroundColour': '#303030',
+        'toolboxBackgroundColour': '#242424',
+        'toolboxForegroundColour': '#E0E0E0',
+        'flyoutBackgroundColour': '#2b2b2b',
+        'flyoutForegroundColour': '#E0E0E0',
+        'scrollbarColour': '#505050',
+        'insertionMarkerColour': '#A0A0A0'
+    }
+})
+
+export default {
     options: {
         grid: {
             spacing: 20,
             length: 3,
-            colour: "#ccc",
+            colour: "#555555",
             snap: true,
         },
-        toolbox: toolbox
+        toolbox: toolbox,
+        theme: customTheme
     }
 }

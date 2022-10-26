@@ -37,6 +37,12 @@
     "save": "Save",
     "start": "Start",
     "end": "End",
+    "examples": "Examples",
+    "default": "Default",
+    "mark": "Mark",
+    "text": "Text",
+    "code": "Code",
+    "graph": "Graph",
     "slot_was_set": "Slot was set",
     "createProject": "Create Project",
     "deleteProject": "Delete Project",
@@ -44,6 +50,13 @@
     "deleteFile": "Delete File",
     "deleteProjectConfirmation": "Are you sure you want to delete {project} ?",
     "deleteFileConfirmation": "Are you sure you want to delete {file} ?",
+    "influenceConversation" : "Influence Conversation",
+    "loadAction": "Load Action",
+    "useEntities": "Use Entities",
+    "ignoreEntities": "Ignore Entities",
+    "selectEntities": "Select Entities",
+    "selectedText": "Selected text",
+    "entityCanNotBeNull": "Entity can not be null",
     "/api":{
         "auth": {
             "login": {
@@ -94,7 +107,7 @@
                 "validationError": "{msg}"
             }
         },
-        "#comment" : "file including story, rule, intent, action, response, entity, slot, synonyms.",
+        "#comment" : "file including story, rule, intent, action, response, entity, slot, synonyms, lconfigs.",
         "file": { 
             "create": {
                 "success": "{file} created",
@@ -105,6 +118,13 @@
             },
             "delete": {
                 "success": "{file} deleted",
+                "invalidName": "{file} is invalid",
+                "targetDoesNotExist": "{file} does not exist",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "update": {
+                "success":"{file} updated",
                 "invalidName": "{file} is invalid",
                 "targetDoesNotExist": "{file} does not exist",
                 "unexpectedError": "{msg}",

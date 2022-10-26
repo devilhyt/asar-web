@@ -1,30 +1,57 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/Login.vue'
-import Home from '../views/Home.vue'
-import Project from '../views/Project.vue'
-import StoryEditor from '../views/StoryEditor.vue'
-
 
 const routes = [
     {
         path: '/',
         name: 'login',
-        component: Login,
+        component: () => import('../views/Login.vue'),
     },
     {
         path: '/home',
         name: 'home',
-        component: Home,
+        component: import('../views/Home.vue'),
+    },
+    {
+        path: '/config',
+        name: 'config',
+        component: () => import('../views/ConfigEditor.vue'),
     },
     {
         path: '/project/:projectName/:fileType',
         name: 'project',
-        component: Project,
+        component: () => import('../views/Project.vue'),
     },
     {
         path: '/project/:projectName/stories/:fileName',
         name: 'storyEditor',
-        component: StoryEditor,
+        meta: {
+            fileType: "stories"
+        },
+        component: () => import('../views/StoryEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/intents/:fileName',
+        name: 'intentEditor',
+        meta: {
+            fileType: "intents"
+        },
+        component: () => import('../views/IntentEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/entities/:fileName',
+        name: 'entityEditor',
+        meta: {
+            fileType: "entities"
+        },
+        component: () => import('../views/EntityEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/actions/:fileName',
+        name: 'actionEditor',
+        meta: {
+            fileType: "actions"
+        },
+        component: () => import('../views/ActionEditor.vue'),
     }
 ]
 

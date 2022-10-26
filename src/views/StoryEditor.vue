@@ -3,6 +3,7 @@
     import { ref } from 'vue'
     import { useRoute } from 'vue-router'
     import { getAllFileData, getFileList, updateFile , getFileData, getBultinActionList} from '../assets/utils/backend.js'
+    import { addBackendMessage } from '../assets/utils/message.js'
     import { nanoid } from 'nanoid'
 
     const params = useRoute().params
@@ -50,7 +51,7 @@
             "content": toObject()
         }
         let response = await updateFile(params, "stories", body)
-        console.log(response)
+        addBackendMessage("/api.file.update.", response, {file: params.fileName})
     }
 
     const undeletable_list = ['start', 'end']
@@ -174,7 +175,10 @@
 
 <script>
     export default {
-        name: "StoryEditor"
+        name: "StoryEditor",
+        created() {
+            document.body.style.backgroundColor = "#333333";
+        }
     }
 </script>
 

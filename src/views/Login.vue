@@ -1,4 +1,5 @@
 <template>
+    <LocaleSwitch class="locale-switch" />
     <div class="form-group">
         <div class='form-title' style="font-weight:bold">Asar</div>
         <br>
@@ -45,6 +46,12 @@
 </script>
 
 <style lang="scss" scoped>
+    .locale-switch {
+        position: absolute;
+        top: 18px;
+        left: 24px;
+        z-index: 30;
+    }
     .form-group {
         position: absolute;
         top: 50%;
@@ -59,15 +66,12 @@
         text-align: center;
         line-height: 25px;
     }
-
     label {
         padding-left: 40px;
     }
-
     .form-title {
         font-size: 34px;
     }
-
     .p-input-icon-right:deep(.p-inputtext) {
         padding-right: 0.429rem;
     }

@@ -10,6 +10,9 @@ import AutoComplete from 'primevue/autocomplete'
 import Textarea from 'primevue/textarea';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import Checkbox from 'primevue/checkbox';
+import MultiSelect from 'primevue/multiselect';
+import Accordion from 'primevue/accordion';
+import AccordionTab from 'primevue/accordiontab';
 
 import CustomMessage from './CustomMessage'
 import LocaleSwitch from './LocaleSwitch'
@@ -36,6 +39,9 @@ export default {
     Textarea,
     TriStateCheckbox,
     Checkbox,
+    MultiSelect,
+    Accordion,
+    AccordionTab,
     CustomMessage,
     LocaleSwitch,
     Modal,

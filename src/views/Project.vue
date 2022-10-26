@@ -3,7 +3,7 @@
     import { useRoute, useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
     import { getFileList, createFile, deleteFile } from '../assets/utils/backend.js'
-import { addBackendMessage } from '@/assets/utils/message.js'
+    import { addBackendMessage } from '@/assets/utils/message.js'
 
     const route = useRoute()
     const router = useRouter()
@@ -70,6 +70,7 @@ import { addBackendMessage } from '@/assets/utils/message.js'
 </script>
 
 <template>
+    <LocaleSwitch class="locale-switch" />
     <div class="topBar">
         <label>{{ $route.params.projectName }}</label>
         <Button class="backBtn" @click="onLeave">{{ $t('leave') }}</Button>
@@ -89,8 +90,8 @@ import { addBackendMessage } from '@/assets/utils/message.js'
                     <div class='file-name'>
                         {{ file }}
                     </div>
-                    <Button class='p-button-secondary' icon='pi pi-book' @click="onEdit(file)"/>
-                    <Button class='deleteBtn' icon='pi pi-trash' @click="onShowConfirmModal(file)" />
+                    <Button icon='pi pi-book' @click="onEdit(file)"/>
+                    <Button class='deleteBtn p-button-secondary' icon='pi pi-trash' @click="onShowConfirmModal(file)" />
                 </div>
             </ScrollPanel>
         </div>
@@ -155,6 +156,12 @@ import { addBackendMessage } from '@/assets/utils/message.js'
 </script>
 
 <style lang="scss" scoped>
+    .locale-switch {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        z-index: 30;
+    }
     .topBar {
         width: 100%;
         font-size: 50px;
@@ -205,7 +212,7 @@ import { addBackendMessage } from '@/assets/utils/message.js'
     .scroll-panel {
         color: #E0E0E0;
         width: 100%;
-        height: 800px;
+        height: calc(100vh - 72px);
     }
     .p-panelmenu:deep() {
         .p-panelmenu-header-link {

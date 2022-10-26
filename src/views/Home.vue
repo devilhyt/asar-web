@@ -1,5 +1,5 @@
 <script setup>
-    import { logout, getProjectList, trainModel, loadModel, createProject, deleteProject } from '../assets/utils/backend.js'
+    import { logout, getProjectList, trainModel, loadModel, createProject, deleteProject, loadModalAction } from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
     import { reactive, computed } from 'vue'
     import { useRouter } from 'vue-router'
@@ -47,6 +47,20 @@
         }
     })
 
+    const load_action_list = computed({
+        get() {
+            return state.project_list.map(project => ({
+                label: project,
+                command:() => {
+                    if(!request_gate){
+                        request_gate = true
+                        loadAction(project).then(response => request_gate = false)
+                    }
+                }
+            }))
+        }
+    })
+
     const home_menu = computed(() => ([
         reactive({
             label: t('project'),
@@ -81,6 +95,11 @@
             label: t('load'),
             icon:'pi pi-fw pi-cog',
             items: load_list
+        }),
+        reactive({
+            label: t('loadAction'),
+            icon:'pi pi-fw pi-cog',
+            items: load_action_list
         }),
         reactive({
             label: t('config'),
@@ -120,11 +139,17 @@
     async function load(project){
         let response = await loadModel(project)
         addBackendMessage("/api.model.load.", response, {project: project})
+    }
+
+    async function loadAction(project){
+        let response = await loadModalAction(project)
+        addBackendMessage("/api.model.load.", response, {project: project})
     }  
 </script>
 
 
 <template>
+    <LocaleSwitch class="locale-switch" />
     <div class="topBar">
         <label>Asar</label>
         <Button class="logoutBtn" @click="onLogout">{{ $t('logout') }}</Button>
@@ -216,6 +241,12 @@
 </script>
 
 <style lang='scss' scoped>
+    .locale-switch {
+        position: absolute;
+        top: 18px;
+        left: 24px;
+        z-index: 30;
+    }
     .topBar {
         width: 100%;
         font-size: 50px;

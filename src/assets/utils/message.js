@@ -80,6 +80,13 @@ const SEVERITY_MAP = {
                 "targetDoesNotExist": "warn",
                 "unexpectedError": "error",
                 "validationError": "error"
+            },
+            "update": {
+                "success": "success",
+                "invalidName": "warn",
+                "targetDoesNotExist": "warn",
+                "unexpectedError": "error",
+                "validationError": "error"
             }
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="message">
-        <Message v-for="msg of messages" :sticky="false" :life="8000" :icon="msg.icon" :severity="msg.severity" :key="msg">{{ msg.content }}</Message>
+        <Message v-for="msg of messages" :sticky="false" :life="6000" :icon="msg.icon" :severity="msg.severity" :key="msg">{{ msg.content }}</Message>
     </div>
 </template>
 

@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@braks/vue-flow": "^0.4.41",
+    "blockly": "^9.0.1",
     "core-js": "^3.8.3",
     "nanoid": "^4.0.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "primeicons": "^5.0.0",
     "primevue": "^3.17.0",
     "vue": "^3.2.13",

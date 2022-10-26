@@ -37,6 +37,12 @@
     "save": "儲存",
     "start": "開始",
     "end": "結束",
+    "examples": "列舉",
+    "default": "預設",
+    "mark": "標記",
+    "text": "文字",
+    "code": "代碼",
+    "graph": "圖形",
     "slot_was_set": "槽位被設置",
     "createProject": "創建專案",
     "deleteProject": "刪除專案",
@@ -44,6 +50,13 @@
     "deleteFile": "刪除檔案",
     "deleteProjectConfirmation": "確定要刪除 {project} 嗎?",
     "deleteFileConfirmation": "確定要刪除 {file} 嗎?",
+    "influenceConversation" : "影響對話",
+    "loadAction": "僅載入動作",
+    "useEntities": "使用實體",
+    "ignoreEntities": "忽略實體",
+    "selectEntities": "選擇實體",
+    "selectedText": "選取的字詞",
+    "entityCanNotBeNull": "實體不能是空的",
     "/api":{
         "auth": {
             "login": {
@@ -80,31 +93,38 @@
         },
         "project": {
             "create": {
-                "success": "{project} 已創建",
+                "success": "已創建 {project}",
                 "duplicateNames": "專案名稱不能重複",
                 "invalidName": "{project} 是無效的專案名稱",
                 "unexpectedError": "{msg}",
                 "validationError": "{msg}"
             },
             "delete": {
-                "success": "{project} 已刪除",
+                "success": "已刪除 {project}",
                 "invalidName": "{project} 是無效的專案名稱",
                 "targetDoesNotExist": "{project} 不存在",  
                 "unexpectedError": "{msg}",
                 "validationError": "{msg}"
-            }  
+            }
         },
-        "#comment" : "file 包含 story, rule, intent, action, response, entity, slot, synonyms",
+        "#comment" : "file 包含 story, rule, intent, action, response, entity, slot, synonyms, lconfigs",
         "file": { 
             "create": {
-                "success": "{file} 已創建",
+                "success": "已創建 {file}",
                 "duplicateNames": "檔案名稱不能重複",
                 "invalidName": "{file} 是無效的檔案名稱",
                 "unexpectedError": "{msg}",
                 "validationError": "{msg}"
             },
             "delete": {
-                "success": "{file} 已刪除",
+                "success": "已刪除 {file}",
+                "invalidName": "{file} 是無效的檔案名稱",
+                "targetDoesNotExist": "{file} 不存在",
+                "unexpectedError": "{msg}",
+                "validationError": "{msg}"
+            },
+            "update": {
+                "success":"已更新 {file}",
                 "invalidName": "{file} 是無效的檔案名稱",
                 "targetDoesNotExist": "{file} 不存在",
                 "unexpectedError": "{msg}",

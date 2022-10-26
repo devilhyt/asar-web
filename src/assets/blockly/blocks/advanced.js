@@ -1,4 +1,5 @@
 import Blockly from 'blockly'
+import { pythonGenerator } from 'blockly/python'
 
 
 Blockly.defineBlocksWithJsonArray([{
@@ -27,7 +28,7 @@ Blockly.defineBlocksWithJsonArray([{
 //     }
 // };
 
-Blockly.Python['advanced_codeArea'] = function(block) {
+pythonGenerator['advanced_codeArea'] = function(block) {
     var value_code = block.getFieldValue('code')
     var code = value_code + '\n';
     return code;

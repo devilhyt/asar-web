@@ -1,5 +1,5 @@
 import Blockly from 'blockly'
-
+import { pythonGenerator } from 'blockly/python'
 
 Blockly.defineBlocksWithJsonArray([
     {
@@ -32,9 +32,9 @@ Blockly.defineBlocksWithJsonArray([
 ])
 
 
-Blockly.Python['rasa_send'] = function(block) {
+pythonGenerator['rasa_send'] = function(block) {
     var value_type = block.getFieldValue('type')
-    var value_content = Blockly.Python.valueToCode(block, 'content', Blockly.Python.ORDER_ATOMIC);
+    var value_content = pythonGenerator.valueToCode(block, 'content', pythonGenerator.ORDER_ATOMIC);
     var code = 'dispatcher.utter_message(' + value_type.toString() + '='+ value_content.toString() + ')\n';
     return code;
 };

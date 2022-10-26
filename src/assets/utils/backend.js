@@ -119,18 +119,18 @@ async function updateFile(params, file_type, body){
     return response
 }
 
-async function getLocalConfig(params){
-    const route = 'projects/' + params.projectName + "/lconfigs"
+async function getLocalConfig(projectName){
+    const route = 'projects/' + projectName + "/lconfigs"
     let response = await apiFetch({method: 'GET', route: route, response_type: "text"});
     return response
 }
 
-async function updateLocalConfig(params, text){
+async function updateLocalConfig(projectName, text){
     const headers = {
         "Content-Type": "text/x-yaml",
         "Accept": "text/x-yaml"
     }
-    const route = 'projects/' + params.projectName + "/lconfigs"
+    const route = 'projects/' + projectName + "/lconfigs"
     let response = await apiFetch({method: 'PUT', headers:headers, route: route, body: text, body_type:"string"});
     return response
 }
@@ -159,6 +159,12 @@ async function loadModel(name){
     return response
 }
 
+async function loadModalAction(name){
+    const route = 'models?mode=actionOnly'
+    let response = await apiFetch({method: 'PUT', route: route, body: {project_name: name}});
+    return response
+}
+
 module.exports = {
     apiFetch: apiFetch,
     login: login,
@@ -178,6 +184,7 @@ module.exports = {
     loadModel: loadModel,
     createProject: createProject,
     deleteProject: deleteProject,
+    loadModalAction: loadModalAction,
 }
 
 
