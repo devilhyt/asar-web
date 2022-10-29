@@ -144,7 +144,16 @@
     async function loadAction(project){
         let response = await loadModalAction(project)
         addBackendMessage("/api.model.load.", response, {project: project})
-    }  
+    }
+    async function onLogout(){
+        let response = await logout()
+        router.push("/");
+        addBackendMessage("/api.auth.logout.", response)
+    }
+
+    async function onEdit(project){
+        router.push({name: "Project", params: {projectName: project, fileType: "stories"}});
+    }
 </script>
 
 
@@ -225,16 +234,6 @@
         name: ["Home"],
         created() {
             document.body.style.backgroundColor = "#6577C4";
-        },
-        methods: {
-            async onLogout(){
-                let response = await logout()
-                this.$router.push("/");
-                addBackendMessage("/api.auth.logout.", response)
-            },
-            async onEdit(project){
-                this.$router.push({name: "project", params: {projectName: project, fileType: "stories"}});
-            }
         }
     };
 

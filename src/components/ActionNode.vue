@@ -28,7 +28,8 @@
             onActionChange(){
                 if(this.action_temp == null){
                     this.action_temp = this.action_list[0]
-                }else{
+                }
+                if(this.action_list.includes(this.action_temp)){
                     this.data.name = this.action_temp
                 }
             }

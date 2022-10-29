@@ -226,7 +226,7 @@
     }
     .saveBtn {
         position: absolute;
-        right: 10px;
-        top: 19px;
+        top: 18px;
+        right: 24px;
     }
 </style>

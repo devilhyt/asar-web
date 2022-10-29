@@ -23,7 +23,7 @@
             <TriStateCheckbox class="value-check" v-model="value_check[index]" @click="onValueCheckChange(index)" />
             <label>{{ $t('value') }}</label>
             <InputText v-if="value_check[index]" v-model="value['value']" class="input-value"/>
-            <label v-if="value_check[index] == null" class="tri-text">null</label>
+            <label v-if="value_check[index] == null" class="tri-text">{{ $t('null') }}</label>
         </div>
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
@@ -56,7 +56,8 @@
             onSlotChange(index){
                 if(this.slot_temp_list[index] == null){
                     this.slot_temp_list[index] = this.slot_list[0]
-                }else{
+                }
+                if(this.slot_list.includes(this.slot_temp_list[index])){
                     this.value_check[index] = false
                     delete this.slots[index].value
                     this.slots[index].slot = this.slot_temp_list[index]

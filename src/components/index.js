@@ -13,6 +13,8 @@ import Checkbox from 'primevue/checkbox';
 import MultiSelect from 'primevue/multiselect';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
+import InputNumber from 'primevue/inputnumber';
+import Chips from 'primevue/chips';
 
 import CustomMessage from './CustomMessage'
 import LocaleSwitch from './LocaleSwitch'
@@ -42,6 +44,8 @@ export default {
     MultiSelect,
     Accordion,
     AccordionTab,
+    InputNumber,
+    Chips,
     CustomMessage,
     LocaleSwitch,
     Modal,

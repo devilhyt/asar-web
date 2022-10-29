@@ -28,7 +28,8 @@
             onResponseChange(){
                 if(this.response_temp == null){
                     this.response_temp = this.response_list[0]
-                }else{
+                }
+                if(this.response_list.includes(this.response_temp)){
                     this.data.name = this.response_temp
                 }
             }

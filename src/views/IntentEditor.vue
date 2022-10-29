@@ -316,7 +316,6 @@
             margin-top: 20px;
             margin-left: 30px;
         }
-        overflow: hidden;
     }
     .switch {
         width: 200px;
@@ -358,7 +357,7 @@
         font-size: 24px;
         background-color: #1e1e1e;
         height: 38px;
-        width: calc(100% - 62px);
+        width: 422px;
     }
     .inner {
         margin-left: 20px;
@@ -416,6 +415,8 @@
         margin-left: 20px;
     }
     .removeExampleBtn {
+        position: absolute;
+        right: -1px;
         height: 38px;
     }
     .autoCompleteGap {

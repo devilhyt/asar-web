@@ -52,7 +52,6 @@
                     <Button class='codeBtn' @click="state.showCode = true">{{ $t('code') }}</Button>
                 </div>
             </div>
-            
             <div v-show="state.showCode">
                 <div class="button">
                     <Button class='graphBtn' @click="state.showCode = false">{{ $t('graph') }}</Button>

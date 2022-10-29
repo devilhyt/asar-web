@@ -3,7 +3,7 @@
     import { useRoute, useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
     import { getFileList, createFile, deleteFile } from '../assets/utils/backend.js'
-    import { addBackendMessage } from '@/assets/utils/message.js'
+    import { addMessage ,addBackendMessage } from '@/assets/utils/message.js'
 
     const route = useRoute()
     const router = useRouter()
@@ -41,6 +41,10 @@
     }
 
     async function onCreatingFile(){
+        if(!Boolean(state.createFileName)){
+            addMessage({severity: "warn", content: t('fileNameCanNotBeEmpty')})
+            return
+        }
         let response = await createFile(route.params, state.createFileName)
         if(response.msgCode == "success"){
             state.dataTuple[route.params.fileType].push(state.createFileName)
@@ -67,6 +71,9 @@
         router.push("/project/" + route.params.projectName + "/" + route.params.fileType + "/" + file)
     }
 
+    function onLeave(){
+        router.push({name: "Home"})
+    }
 </script>
 
 <template>
@@ -145,13 +152,7 @@
         name: ["FileManager"],
         created() {
             document.body.style.backgroundColor = "#333333";
-        },
-        methods: {
-            onLeave(){
-                this.$router.push({name: "home"})
-            }
         }
-        
     }
 </script>
 

@@ -3,27 +3,27 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {
         path: '/',
-        name: 'login',
+        name: 'Login',
         component: () => import('../views/Login.vue'),
     },
     {
         path: '/home',
-        name: 'home',
-        component: import('../views/Home.vue'),
+        name: 'Home',
+        component: () => import('../views/Home.vue'),
     },
     {
         path: '/config',
-        name: 'config',
+        name: 'Config',
         component: () => import('../views/ConfigEditor.vue'),
     },
     {
         path: '/project/:projectName/:fileType',
-        name: 'project',
+        name: 'Project',
         component: () => import('../views/Project.vue'),
     },
     {
         path: '/project/:projectName/stories/:fileName',
-        name: 'storyEditor',
+        name: 'StoryEditor',
         meta: {
             fileType: "stories"
         },
@@ -31,7 +31,7 @@ const routes = [
     },
     {
         path: '/project/:projectName/intents/:fileName',
-        name: 'intentEditor',
+        name: 'IntentEditor',
         meta: {
             fileType: "intents"
         },
@@ -39,7 +39,7 @@ const routes = [
     },
     {
         path: '/project/:projectName/entities/:fileName',
-        name: 'entityEditor',
+        name: 'EntityEditor',
         meta: {
             fileType: "entities"
         },
@@ -47,11 +47,27 @@ const routes = [
     },
     {
         path: '/project/:projectName/actions/:fileName',
-        name: 'actionEditor',
+        name: 'ActionEditor',
         meta: {
             fileType: "actions"
         },
         component: () => import('../views/ActionEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/synonyms/:fileName',
+        name: 'SynonymEditor',
+        meta: {
+            fileType: "synonyms"
+        },
+        component: () => import('../views/SynonymEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/slots/:fileName',
+        name: 'SlotEditor',
+        meta: {
+            fileType: "slots"
+        },
+        component: () => import('../views/SlotEditor.vue'),
     }
 ]
 

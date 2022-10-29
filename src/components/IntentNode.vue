@@ -58,7 +58,8 @@
             onIntentChange(){
                 if(this.intent_temp == null){
                     this.intent_temp = this.intent_list[0]
-                }else{
+                }
+                if(this.intent_list.includes(this.intent_temp)){
                     this.data.name = this.intent_temp
                 }
             },

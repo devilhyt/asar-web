@@ -19,7 +19,7 @@
         },
         methods: {
             onLeave(){
-                this.$router.push({name: "project", params: {projectName: this.$route.params.projectName, fileType: this.$router.currentRoute.value.meta.fileType}});
+                this.$router.push({name: "Project", params: {projectName: this.$route.params.projectName, fileType: this.$router.currentRoute.value.meta.fileType}});
             }
         }
     };
