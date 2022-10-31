@@ -55,7 +55,6 @@
         state.temp.group = ""
         state.mark.role = ""
         state.mark.group = ""
-        console.log("test")
     })
 
     function onEntityChange(){

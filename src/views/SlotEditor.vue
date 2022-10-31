@@ -251,6 +251,10 @@
         }
     }
 
+    function onRemoveCondition(index, conditionIndex){
+        state.slotData['mappings'][index]['conditions'].splice(conditionIndex, 1)
+    }
+
     function onConditionRequestedSlotChange(index, conditionIndex){
         let condition = state.slotData["mappings"][index]["conditions"][conditionIndex]
         if(!Boolean(condition['requested_slot'])){
@@ -360,7 +364,8 @@
                                         <label>{{ $t('conditions') }}</label>
                                         <Button class="inner addConditionBtn" @click="onAddCondition(index)">{{ $t('add') }}</Button>
                                     </div>
-                                    <div class="gap" v-for="(condition, conditionIndex) in mapping['conditions']" :key="condition">
+                                    <div class="inner gap relative" v-for="(condition, conditionIndex) in mapping['conditions']" :key="condition">
+                                        <Button class="removeConditionBtn" @click="onRemoveCondition(index, conditionIndex)" icon="pi pi-trash" />
                                         <label>{{ $t('condition') }} {{conditionIndex + 1}} :</label>
                                         <div class="inner">
                                             <label class="item-text">{{ $t('activeLoop') }}</label>
@@ -509,5 +514,14 @@
     }
     .addConditionBtn {
         margin-bottom: 4px;
+    }
+    .removeConditionBtn {
+        position: absolute;
+        margin-top: -2px;
+        left: -32px;
+        transform: scale(0.6);
+    }
+    .relative {
+        position: relative
     }
 </style>

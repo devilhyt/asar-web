@@ -8,6 +8,10 @@
         response_list: Array
     })
 
+    if(!props.data.hasOwnProperty("name")){
+        props.data.name = props.response_list[0]
+    }
+
     let state = reactive({
         response: props.data.name
     })

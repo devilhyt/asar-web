@@ -1,25 +1,43 @@
 <script setup>
     import { Background, Controls, MiniMap, VueFlow, useVueFlow, graphPosToZoomedPos} from '@braks/vue-flow'
-    import { ref } from 'vue'
+    import { ref, reactive } from 'vue'
     import { useRoute } from 'vue-router'
     import { getAllFileData, getFileList, updateFile , getFileData, getBultinActionList} from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
     import { nanoid } from 'nanoid'
 
     const params = useRoute().params
-    
-    const intent_list = await getFileList(params, "intents")
-    const entity_data = await getAllFileData(params, "entities")
+
+    function waitAllRequestFinish(){
+        return Promise.all([
+            getFileList(params, "intents"),
+            getAllFileData(params, "entities"),
+            getFileList(params, "actions"),
+            getFileList(params, "responses"),
+            getBultinActionList(params),
+            getFileList(params, "slots"),
+            getFileList(params, "forms")
+        ])
+    }
+
+    var intent_list, entity_data, custom_action_list, response_list, bultin_action_list, slot_list, form_list
+
+    await waitAllRequestFinish().then((promiseArray) => {
+        intent_list = promiseArray[0]
+        entity_data = promiseArray[1]
+        custom_action_list = promiseArray[2]
+        response_list = promiseArray[3]
+        bultin_action_list = promiseArray[4]
+        slot_list = promiseArray[5]
+        form_list = promiseArray[6]
+    })
+
     const entity_list = Object.keys(entity_data)
-    const custom_action_list = await getFileList(params, "actions")
-    const response_list = await getFileList(params, "responses")
-    const bultin_action_list = await getBultinActionList(params)
     const action_list = custom_action_list.concat(bultin_action_list)
-    const slot_list = await getFileList(params, "slots")
 
     var selectedItem
 
-    const listbox_items = ["intent", "action", "response", "slot_was_set"]
+    const listbox_items = ["intent", "action", "response", "slot_was_set", "form"]
 
     const defaultElements = [
         { 
@@ -42,7 +60,7 @@
         addNodes, getEdges, getNode, getNodes, onPaneReady,
         onConnect, addEdges,setNodes,setEdges, setTransform, toObject,
         project, getSelectedNodes, fitView
-    } = useVueFlow({node:defaultElements, deleteKeyCode:"Delete"})
+    } = useVueFlow({node: defaultElements, deleteKeyCode: "Delete"})
 
     const elements = ref([])
 
@@ -91,22 +109,6 @@
     async function addCustomNode(type){
         let data = {
             type: type,
-        }
-        switch(type){
-            case "intent":
-                data["name"] = intent_list[0]
-                data["entities"] = [{entity: entity_list[0]}]
-                break
-            case "action:":
-                data["name"] = action_list[0]
-                break
-            case "response":
-                data["name"] = response_list[0]
-                break
-            case "slot_was_set":
-                data["name"] = slot_list[0]
-                data["slots"] = [{slot: slot_list[0]}]
-                break
         }
         const { x, y } = project({ x: window.innerWidth / 2, y:window.innerHeight / 2 })
 
@@ -168,6 +170,9 @@
             </template>
             <template #node-slot_was_set="props">
                 <SlotWasSetNode v-bind="props" :slot_list="slot_list" />
+            </template>
+            <template #node-form="props">
+                <FormNode v-bind="props" :form_list="form_list" />
             </template>
         </VueFlow>
     </EditorLayout>

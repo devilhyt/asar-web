@@ -27,6 +27,8 @@ import IntentNode from "./IntentNode"
 import ActionNode from "./ActionNode"
 import ResponseNode from "./ResponseNode"
 import SlotWasSetNode from "./SlotWasSetNode"
+import FormNode from "./FormNode"
+import ActiveLoopNode from "./ActiveLoopNode"
 
 export default {
     InputText,
@@ -56,5 +58,7 @@ export default {
     IntentNode,
     ActionNode,
     ResponseNode,
-    SlotWasSetNode
+    SlotWasSetNode,
+    FormNode,
+    ActiveLoopNode
 }

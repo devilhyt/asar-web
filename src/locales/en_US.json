@@ -57,6 +57,7 @@
     "condition": "Condition",
     "conditions": "Conditions",
     "url": "URL",
+    "form": "Form",
     "forms": "Forms",
     "activeLoop": "Active Loop",
     "requestedSlot": "Requested Slot",

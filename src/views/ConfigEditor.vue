@@ -8,7 +8,6 @@
     document.body.style.backgroundColor = "#333333";
 
     const router = useRouter()
-    const params = useRoute().params
     const { t } = useI18n()
 
     let request_gate = false
@@ -60,7 +59,7 @@
         </div>
         <div class='content'>
             <Textarea class="editor" v-model="state.config" />
-            <Button class="saveBtn" label="Save" @click="onSave"/>
+            <Button class="saveBtn" label="Save" @click="onSave">{{ $t('save') }}</Button>
         </div>
     </div>
 </template>

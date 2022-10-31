@@ -46,6 +46,13 @@
 <script>
     export default {
         data() {
+            if(!this.$props.data.hasOwnProperty("name")){
+                this.$props.data.name = this.$props.intent_list[0]
+            }
+            if(!this.$props.data.hasOwnProperty("entities")){
+                this.$props.data.entities = []
+                
+            }
             return {
                 entities: this.$props.data.entities,
                 intent_temp: this.$props.data.name,

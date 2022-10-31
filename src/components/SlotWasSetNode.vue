@@ -32,6 +32,12 @@
 <script>
     export default {
         data() {
+            if(!this.$props.data.hasOwnProperty("name")){
+                this.$props.data.name = this.$props.slot_list[0]
+            }
+            if(!this.$props.data.hasOwnProperty("slots")){
+                this.$props.data.slots = [{slot: this.$props.slot_list[0]}]
+            }
             return {
                 slots: this.$props.data.slots,
                 slot_temp_list: this.$props.data.slots.map(data => data.slot),

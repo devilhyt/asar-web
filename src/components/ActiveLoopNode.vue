@@ -5,23 +5,23 @@
     let props = defineProps({
         id: String,
         data: Object,
-        action_list: Array
+        form_list: Array
     })
 
     if(!props.data.hasOwnProperty("name")){
-        props.data.name = props.action_list[0]
+        props.data.name = props.form_list[0]
     }
 
     let state = reactive({
-        action: props.data.name
+        form: props.data.name
     })
 
-    function onActionChange(){
-        if(state.action == null){
-            state.action = props.action_list[0]
+    function onFormChange(){
+        if(state.form == null){
+            state.form = props.form_list[0]
         }
-        if(props.action_list.includes(state.action)){
-            props.data.name = state.action
+        if(props.form_list.includes(state.form)){
+            props.data.name = state.form
         }
     }
 </script>
@@ -29,15 +29,15 @@
 <template>
     <div class='node'>
         <Handle :id="id + '_in'" type="target" :position="Position.Top" />
-        <div>{{ $t('action') }}</div>
-        <CustomAutoComplete class="actionAutoComplete" v-model="state.action" :data_list='props.action_list' @onChange="onActionChange" inputStyle="text-align:center; font-size: 6px;" />
+        <div>{{ $t('form') }}</div>
+        <CustomAutoComplete v-model="state.response" class="formAutoComplete" :data_list='props.form_list' @onChange="onFormChange" inputStyle="text-align:center; font-size: 6px;" />
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
 </template>
 
 <style scoped lang="scss">
-    .node{
-        color: #007a14;
+    .node {
+        color: #00437a;
         background-color: white;
         padding: 10px;
         border-radius: 3px;
@@ -48,7 +48,7 @@
         border-style: solid;
         border-color: var(#222222);
     }
-    .actionAutoComplete {
+    .formAutoComplete {
         height: 18px;
         left: 6px;
         margin-top: 10px;
