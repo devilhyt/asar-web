@@ -59,7 +59,7 @@
     "url": "URL",
     "form": "Form",
     "forms": "Forms",
-    "activeLoop": "Active Loop",
+    "active_loop": "Active Loop",
     "requestedSlot": "Requested Slot",
     "requiredSlots": "Required Slot",
     "selectIntents": "Select Intents",

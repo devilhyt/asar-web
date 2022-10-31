@@ -30,7 +30,7 @@
     <div class='node'>
         <Handle :id="id + '_in'" type="target" :position="Position.Top" />
         <div>{{ $t('form') }}</div>
-        <CustomAutoComplete v-model="state.response" class="formAutoComplete" :data_list='props.form_list' @onChange="onFormChange" inputStyle="text-align:center; font-size: 6px;" />
+        <CustomAutoComplete v-model="state.form" class="formAutoComplete" :data_list='props.form_list' @onChange="onFormChange" inputStyle="text-align:center; font-size: 6px;" />
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
 </template>

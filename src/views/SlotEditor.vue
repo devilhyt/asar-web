@@ -368,7 +368,7 @@
                                         <Button class="removeConditionBtn" @click="onRemoveCondition(index, conditionIndex)" icon="pi pi-trash" />
                                         <label>{{ $t('condition') }} {{conditionIndex + 1}} :</label>
                                         <div class="inner">
-                                            <label class="item-text">{{ $t('activeLoop') }}</label>
+                                            <label class="item-text">{{ $t('active_loop') }}</label>
                                             <InputText class='inner' type="text" v-model="condition['active_loop']"/>
                                         </div>
                                         <div class="inner">
