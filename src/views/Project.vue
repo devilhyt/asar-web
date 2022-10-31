@@ -9,7 +9,7 @@
     const router = useRouter()
     const { t } = useI18n()
 
-    const data_type = ["stories", "rules", "intents", "actions", "responses", "entities", "slots", "synonyms"]
+    const data_type = ["stories", "rules", "intents", "actions", "responses", "entities", "slots", "forms", "synonyms"]
 
     let state = reactive({
         fileType: computed(()=> (t(route.params.fileType))),

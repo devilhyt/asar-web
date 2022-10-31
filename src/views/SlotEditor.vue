@@ -328,8 +328,8 @@
                                     <div class="inner gap">
                                          <div class="gap" v-if="useMappingIntentArray.includes(mapping['type'])">
                                             <select class="mapping-intent-switch" v-model="state.mappingIntentTypeArray[index]" @change="onMappingIntentSwitchChange(index)">
-                                                <option value="intent">{{ $t('use_intent') }}</option>
-                                                <option value="not_intent">{{ $t('ignore_intent') }}</option>
+                                                <option value="intent">{{ $t('useIntents') }}</option>
+                                                <option value="not_intent">{{ $t('ignoredIntents') }}</option>
                                             </select>
                                             <MultiSelect class="mapping-intent-select inner" v-model="mapping[state.mappingIntentTypeArray[index]]" :options="state.intentList" :placeholder="$t('selectIntents')" @change="onIntentSelectChange(index)" />
                                         </div>
@@ -358,7 +358,7 @@
                                     </div>
                                     <div class='title gap'>
                                         <label>{{ $t('conditions') }}</label>
-                                        <Button class="inner" @click="onAddCondition(index)">{{ $t('add') }}</Button>
+                                        <Button class="inner addConditionBtn" @click="onAddCondition(index)">{{ $t('add') }}</Button>
                                     </div>
                                     <div class="gap" v-for="(condition, conditionIndex) in mapping['conditions']" :key="condition">
                                         <label>{{ $t('condition') }} {{conditionIndex + 1}} :</label>
@@ -506,5 +506,8 @@
     .mapping-value-input {
         height: 32px;
         position: absolute
+    }
+    .addConditionBtn {
+        margin-bottom: 4px;
     }
 </style>

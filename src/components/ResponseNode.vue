@@ -1,41 +1,35 @@
 <script setup>
     import { Handle, Position } from '@braks/vue-flow'
+    import { reactive } from 'vue'
 
-    defineProps({
+    let props = defineProps({
         id: String,
         data: Object,
         response_list: Array
     })
+
+    let state = reactive({
+        response: props.data.name
+    })
+
+    function onResponseChange(){
+        if(state.response == null){
+            state.response = props.response_list[0]
+        }
+        if(props.response_list.includes(state.response)){
+            props.data.name = state.response
+        }
+    }
 </script>
 
 <template>
     <div class='node'>
         <Handle :id="id + '_in'" type="target" :position="Position.Top" />
         <div>{{ $t('response') }}</div>
-        <CustomAutoComplete v-model="response_temp" class="responseAutoComplete" :data_list='response_list' @onChange="onResponseChange" inputStyle="text-align:center; font-size: 6px;" />
+        <CustomAutoComplete v-model="state.response" class="responseAutoComplete" :data_list='props.response_list' @onChange="onResponseChange" inputStyle="text-align:center; font-size: 6px;" />
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
 </template>
-
-<script>
-    export default {
-        data(){
-            return{
-                response_temp: this.$props.data.name
-            }
-        },
-        methods: {
-            onResponseChange(){
-                if(this.response_temp == null){
-                    this.response_temp = this.response_list[0]
-                }
-                if(this.response_list.includes(this.response_temp)){
-                    this.data.name = this.response_temp
-                }
-            }
-        }
-    }
-</script>
 
 <style scoped lang="scss">
     .node{

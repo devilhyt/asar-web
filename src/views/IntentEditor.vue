@@ -294,7 +294,7 @@
         -ms-user-select: none;
         user-select: none;
     }
-    .editor{
+    .editor {
         background-color: #1e1e1e;
     }
     .middle {

@@ -68,6 +68,22 @@ const routes = [
             fileType: "slots"
         },
         component: () => import('../views/SlotEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/responses/:fileName',
+        name: 'ResponseEditor',
+        meta: {
+            fileType: "responses"
+        },
+        component: () => import('../views/ResponseEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/forms/:fileName',
+        name: 'FormEditor',
+        meta: {
+            fileType: "forms"
+        },
+        component: () => import('../views/FormEditor.vue'),
     }
 ]
 

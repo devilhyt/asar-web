@@ -1,41 +1,36 @@
 <script setup>
     import { Handle, Position } from '@braks/vue-flow'
+    import { reactive } from 'vue'
 
-    defineProps({
+    let props = defineProps({
         id: String,
         data: Object,
         action_list: Array
     })
+
+    let state = reactive({
+        action: props.data.name
+    })
+
+    function onActionChange(){
+        if(state.action == null){
+            state.action = props.action_list[0]
+        }
+        if(props.action_list.includes(state.action)){
+            props.data.name = state.action
+        }
+        console.log(props.data.name)
+    }
 </script>
 
 <template>
     <div class='node'>
         <Handle :id="id + '_in'" type="target" :position="Position.Top" />
         <div>{{ $t('action') }}</div>
-        <CustomAutoComplete class="actionAutoComplete" v-model="action_temp" :data_list='action_list' @onChange="onActionChange" inputStyle="text-align:center; font-size: 6px;" />
+        <CustomAutoComplete class="actionAutoComplete" v-model="state.action" :data_list='props.action_list' @onChange="onActionChange" inputStyle="text-align:center; font-size: 6px;" />
         <Handle :id="id + '_out'" type="source" :position="Position.Bottom" />
     </div>
 </template>
-
-<script>
-    export default {
-        data(){
-            return{
-                action_temp: this.$props.data.name
-            }
-        },
-        methods: {
-            onActionChange(){
-                if(this.action_temp == null){
-                    this.action_temp = this.action_list[0]
-                }
-                if(this.action_list.includes(this.action_temp)){
-                    this.data.name = this.action_temp
-                }
-            }
-        }
-    }
-</script>
 
 <style scoped lang="scss">
     .node{
