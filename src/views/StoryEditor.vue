@@ -169,7 +169,7 @@
                 <ResponseNode v-bind="props" :response_list="response_list" />
             </template>
             <template #node-slot_was_set="props">
-                <SlotWasSetNode v-bind="props" :slot_list="slot_list" />
+                <SlotWasSetNode v-bind="props" :slot_list="slot_list.concat('requested_slot')" />
             </template>
             <template #node-form="props">
                 <FormNode v-bind="props" :form_list="form_list" />

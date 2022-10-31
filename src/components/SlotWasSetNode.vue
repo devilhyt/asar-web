@@ -72,8 +72,14 @@
             onDeleteSlot(index){
                 this.slots.splice(index, 1)
                 this.slot_temp_list.splice(index, 1)
+                this.value_check.splice(index, 1)
             },
             onValueCheckChange(index){
+                if(this.slot_temp_list[index] == "requested_slot"){
+                    if(this.value_check[index] === false){
+                        this.value_check[index] = null
+                    }
+                }
                 if(this.value_check[index] === true){
                     delete this.slots[index].value
                 }else if(this.value_check[index] === false){
