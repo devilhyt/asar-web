@@ -84,6 +84,14 @@ const routes = [
             fileType: "forms"
         },
         component: () => import('../views/FormEditor.vue'),
+    },
+    {
+        path: '/project/:projectName/rules/:fileName',
+        name: 'RuleEditor',
+        meta: {
+            fileType: "rules"
+        },
+        component: () => import('../views/RuleEditor.vue'),
     }
 ]
 
