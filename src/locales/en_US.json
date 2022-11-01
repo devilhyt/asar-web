@@ -60,6 +60,8 @@
     "form": "Form",
     "forms": "Forms",
     "active_loop": "Active Loop",
+    "onConversationStart": "On Conversation Start",
+    "waitForUserInput": "Wait For User Input",
     "requestedSlot": "Requested Slot",
     "requiredSlots": "Required Slot",
     "selectIntents": "Select Intents",

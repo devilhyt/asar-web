@@ -29,6 +29,7 @@ import ResponseNode from "./ResponseNode"
 import SlotWasSetNode from "./SlotWasSetNode"
 import FormNode from "./FormNode"
 import ActiveLoopNode from "./ActiveLoopNode"
+import ConditionStartNode from "./ConditionStartNode"
 
 export default {
     InputText,
@@ -60,5 +61,6 @@ export default {
     ResponseNode,
     SlotWasSetNode,
     FormNode,
-    ActiveLoopNode
+    ActiveLoopNode,
+    ConditionStartNode,
 }

@@ -60,6 +60,8 @@
     "form": "表單",
     "forms": "表單",
     "active_loop": "進行中的迴圈",
+    "onConversationStart": "僅在對話開始時",
+    "waitForUserInput": "等待使用者輸入",
     "requestedSlot": "槽位需求",
     "requiredSlots": "需要的槽位",
     "selectIntents": "選擇意圖",
