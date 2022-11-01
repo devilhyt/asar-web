@@ -67,6 +67,11 @@
                     this.value_check[index] = false
                     delete this.slots[index].value
                     this.slots[index].slot = this.slot_temp_list[index]
+                    if(this.slots[index].slot == "requested_slot"){
+                        this.slots.splice(index, 1)
+                        this.slot_temp_list.splice(index, 1)
+                        this.value_check.splice(index, 1)
+                    }
                 }
             },
             onDeleteSlot(index){

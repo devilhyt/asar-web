@@ -41,6 +41,10 @@
         })
     }
 
+    function onConfigChange(type){
+        props.data[type] = state[type]
+    }
+
     function onAddCondition(){
         state.useValue.push(true)
         temp.slot.push(props.slot_list[0])
@@ -97,14 +101,14 @@
 <template>
     <div class='node'>
         <div class="content inner">
-            <Checkbox class="value-check" v-model="data['conversation_start']" :binary="true" />
+            <Checkbox class="value-check" v-model="props.data['conversation_start']" :binary="true" />
             <label>{{ $t('onConversationStart') }}</label><br>
-            <Checkbox class="value-check" v-model="data['wait_for_user_input']" :binary="true" />
+            <Checkbox class="value-check" v-model="props.data['wait_for_user_input']" :binary="true" />
             <label>{{ $t('waitForUserInput') }}</label>
             <div class="condition gap">
                 <label>{{ $t('condition') }}</label>
                 <Button class="plusBtn" icon="pi pi-plus" @click="onAddCondition"/>
-                <div class="gap" v-for="(condition, index) in data['condition']" :key="(condition, index)">
+                <div class="gap" v-for="(condition, index) in props.data['condition']" :key="condition">
                     <select class="switch gap" v-model="condition['type']" @change="onConditionTypeChange(index)">
                         <option value="slot_was_set">{{ $t('slot_was_set') }}</option>
                         <option value="active_loop">{{ $t('active_loop') }}</option>
@@ -148,7 +152,6 @@
         border-width: 0.5px;
         border-style: solid;
         border-color: var(#222222);
-        cursor: pointer;
     }
     .content {
         text-align: left;
@@ -168,7 +171,6 @@
         margin-left: -20px;
     }
     .slot_value-check {
-        position: static;
         transform: scale(0.7);
         margin-top: 2px;
         margin-left: -3px;
