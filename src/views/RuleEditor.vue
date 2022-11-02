@@ -91,7 +91,7 @@
             return
         }
         if(getNode.value(params.target).type == "action" || getNode.value(params.target).type == "response"){
-            if(getEdges.value.filter(edge => (edge.source == params.source (edge.targetNode.type == "action" || edge.targetNode.type == "response"))).length > 0){
+            if(getEdges.value.filter(edge => (edge.source == params.source && (edge.targetNode.type == "action" || edge.targetNode.type == "response"))).length > 0){
                 return
             }
         }
