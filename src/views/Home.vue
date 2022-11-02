@@ -1,5 +1,5 @@
 <script setup>
-    import { logout, getProjectList, trainModel, loadModel, createProject, deleteProject, loadModalAction } from '../assets/utils/backend.js'
+    import { logout, getProjectList, trainModel, loadModel, createProject, deleteProject, loadModalAction, getRasaStatus } from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
     import { reactive, computed } from 'vue'
     import { useRouter } from 'vue-router'
@@ -15,7 +15,27 @@
         onConfirmDelete: false,
         createProjectName: "",
         deleteProjectName: "",
+        status: "requesting",
     })
+
+    function setRasaStatus(){
+        getRasaStatus().then(response => {
+            if(response["training_status"]){
+                state.status = "training"
+            }else if(response["loaded_status"]){
+                state.status = "loading"
+            }else{
+                state.status = "idle"
+            }
+        })
+    }
+
+    
+    setRasaStatus()
+    setInterval(function() {
+        setRasaStatus()
+    },3000)
+
 
     let request_gate = false
 
@@ -166,6 +186,10 @@
     <div class="bottom">
         <div class='sidePanel'>
             <PanelMenu :model="home_menu" />
+            <div class="status">
+                <label>{{ $t('serverStatus') }}</label><br>
+                <label>{{ $t(state.status) }}</label>
+            </div>
         </div>
         <div class='home-content'>
             <ScrollPanel class='scroll-panel'>
@@ -388,5 +412,11 @@
                 width: 80px;
             }
         }
+    }
+    .status {
+        text-align: center;
+        font-size: 24px;
+        color: #E0E0E0;
+        background: #33363a;
     }
 </style>
