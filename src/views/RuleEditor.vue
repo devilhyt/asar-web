@@ -156,7 +156,7 @@
             </div>
 
             <template #node-start="props">
-                <ConditionStartNode v-bind="reactive(props)" :slot_list="slot_list" />
+                <ConditionStartNode v-bind="reactive(props)" :slot_list="slot_list" :form_list="form_list" />
             </template>
             <template #node-end>
                 <EndNode />

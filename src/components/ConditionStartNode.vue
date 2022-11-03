@@ -5,7 +5,8 @@
     let props = defineProps({
         id: String,
         data: Object,
-        slot_list: Array
+        slot_list: Array,
+        form_list: Array
     })
 
     if(!props.data.hasOwnProperty("conversation_start")){
@@ -21,7 +22,8 @@
     })
 
     let temp = reactive({
-        slot: []
+        slot: [],
+        activeLoop: []
     })
 
     if(props.data.hasOwnProperty("condition")){
@@ -37,7 +39,13 @@
             if(data.hasOwnProperty("slot")){
                 return data.slot
             }
-            return ""
+            return null
+        })
+        temp.activeLoop = props.data["condition"].map(data => {
+            if(data.type == "active_loop"){
+                return data.value
+            }
+            return null
         })
     }
 
@@ -64,6 +72,7 @@
         props.data["condition"].splice(index, 1)
         state.useValue.splice(index, 1)
         temp.slot.splice(index, 1)
+        temp.activeLoop.splice(index, 1)
     }
 
     function onConditionTypeChange(index){
@@ -96,6 +105,16 @@
             props.data["condition"][index]['slot'] = temp.slot[index]
         }
     }
+
+    function onActiveLoopChange(index){
+        if(temp.activeLoop[index] == null){
+            temp.activeLoop[index] = ""
+            props.data["condition"][index]['value'] = ""
+        }
+        if(props.form_list.includes(temp.activeLoop[index])){
+            props.data["condition"][index]['value'] = temp.activeLoop[index]
+        }
+    }
 </script>
 
 <template>
@@ -117,7 +136,7 @@
                     <div v-if="condition['type'] == 'slot_was_set'">
                         <div>
                             <label>{{$t('slot')}}</label>
-                            <CustomAutoComplete v-model="temp.slot[index]" class="slotAutoComplete" :data_list='slot_list' @onChange="onSlotChange(index)" inputStyle="font-size: 6px;" />
+                            <CustomAutoComplete v-model="temp.slot[index]" class="autoComplete" :data_list='slot_list' @onChange="onSlotChange(index)" inputStyle="font-size: 6px;" />
                         </div>
                         <div>
                             <label>{{$t('value')}}</label>
@@ -127,10 +146,7 @@
                         <InputText class="input-value inner" v-if="state.useValue[index]" v-model="condition['value']" />
                     </div>
                     <div v-if="condition['type'] == 'active_loop'">
-                        <div>
-                            <label>{{$t('value')}}</label>
-                        </div>
-                        <InputText class="input-value inner" v-model="condition['value']" /><br>
+                        <CustomAutoComplete v-model="temp.activeLoop[index]" class="autoComplete" :data_list='form_list' @onChange="onActiveLoopChange(index)" inputStyle="font-size: 6px;" />
                     </div>
                 </div>
             </div>
@@ -209,7 +225,7 @@
         margin-top: 4px;
         font-size: 6px;
     }
-    .slotAutoComplete {
+    .autoComplete {
         width: 110px;
         height: 12px;
         right: 8px;
