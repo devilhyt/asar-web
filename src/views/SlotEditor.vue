@@ -18,12 +18,24 @@
     const useMappingValueArray = ['from_intent', 'from_trigger_intent']
     const useMappingActionArray = ['custom']
 
+    function waitAllRequestFinish(){
+        return Promise.all([
+            getFileData(params, "slots"),
+            getFileList(params, "intents"),
+            getFileList(params, "actions"),
+            getAllFileData(params, "entities"),
+            getFileList(params, "forms"),
+            getFileList(params, "slots"),
+        ])
+    }
 
     let state = reactive({
-        slotData: await getFileData(params, "slots") ?? [],
-        intentList: await getFileList(params, "intents") ?? [],
-        actionList: await getFileList(params, "actions") ?? [],
-        entityData: await getAllFileData(params, "entities") ?? [],
+        slotData: [],
+        intentList: [],
+        actionList: [],
+        entityData: [],
+        formList: [],
+        slotList: [],
         entityList: [],
         useInitialValue: false,
         useInfluenceConversation: computed(() => useInfluenceConversationArray.includes(state.slotData['type'])),
@@ -36,7 +48,18 @@
         mappingRoleArray: [],
         mappingGroupArray: [],
         triMappingValueArray: [],
-        mappingActionArray: []
+        mappingActionArray: [],
+        conditionActiveLoopArray: [],
+        conditionRequestedSlotArray:[]
+    })
+
+    await waitAllRequestFinish().then((promiseArray) => {
+        state.slotData = promiseArray[0]
+        state.intentList = promiseArray[1]
+        state.actionList = promiseArray[2]
+        state.entityData = promiseArray[3]
+        state.formList = promiseArray[4]
+        state.slotList = promiseArray[5].concat("null")
     })
 
     state.useInitialValue = Boolean(state.slotData["initial_value"])
@@ -67,6 +90,10 @@
         }else{
             state.mappingActionArray.push(null)
         }
+        if(Boolean(mapping['conditions'])){
+            state.conditionActiveLoopArray.push(mapping['conditions'].map(x => (x.active_loop)))
+            state.conditionRequestedSlotArray.push(mapping['conditions'].map(x => (x.requested_slot ?? null)))
+        }
         if(mapping['entity'] != undefined){
             state.useMappingRoleArray.push(Boolean(state.entityData[mapping['entity']].roles.length))
             state.useMappingGroupArray.push(Boolean(state.entityData[mapping['entity']].groups.length))
@@ -84,7 +111,6 @@
             state.triMappingValueArray.push(false)
         }
     });
-
 
     let temp = reactive({
         minValue: state.slotData['min_value'] ?? 0.0,
@@ -253,12 +279,27 @@
 
     function onRemoveCondition(index, conditionIndex){
         state.slotData['mappings'][index]['conditions'].splice(conditionIndex, 1)
+        state.conditionActiveLoopArray[index].splice(conditionIndex, 1)
+        state.conditionRequestedSlotArray[index].splice(conditionIndex, 1)
+    }
+
+    function onConditionActiveLoopChange(index, conditionIndex){
+        if(state.conditionActiveLoopArray[index][conditionIndex] == null){
+            state.slotData["mappings"][index]["conditions"][conditionIndex]["active_loop"] = ""
+        }
+        let activeLoop = state.conditionActiveLoopArray[index][conditionIndex]
+        if(state.formList.includes(activeLoop)){
+            state.slotData["mappings"][index]["conditions"][conditionIndex]["active_loop"] = activeLoop
+        }
     }
 
     function onConditionRequestedSlotChange(index, conditionIndex){
-        let condition = state.slotData["mappings"][index]["conditions"][conditionIndex]
-        if(!Boolean(condition['requested_slot'])){
+        if(state.conditionRequestedSlotArray[index][conditionIndex] == null){
             delete state.slotData["mappings"][index]["conditions"][conditionIndex]["requested_slot"]
+        }
+        let requesteSlot = state.conditionRequestedSlotArray[index][conditionIndex]
+        if(state.slotList.includes(requesteSlot)){
+            state.slotData["mappings"][index]["conditions"][conditionIndex]["requested_slot"] = requesteSlot
         }
     }
 
@@ -371,14 +412,15 @@
                                     <div class="inner gap relative" v-for="(condition, conditionIndex) in mapping['conditions']" :key="condition">
                                         <Button class="removeConditionBtn" @click="onRemoveCondition(index, conditionIndex)" icon="pi pi-trash" />
                                         <label>{{ $t('condition') }} {{conditionIndex + 1}} :</label>
-                                        <div class="inner">
+                                        <div class="inner gap">
                                             <label class="item-text">{{ $t('active_loop') }}</label>
-                                            <InputText class='inner' type="text" v-model="condition['active_loop']"/>
+                                            <CustomAutoComplete class="conditionAutoComplete" v-model="state.conditionActiveLoopArray[index][conditionIndex]" :data_list="state.formList" @onChange="onConditionActiveLoopChange(index, conditionIndex)" />
                                         </div>
-                                        <div class="inner">
+                                        <div class="inner gap">
                                             <label class="item-text">{{ $t('requestedSlot') }}</label>
-                                            <InputText class='inner' type="text" v-model="condition['requested_slot']" @input="onConditionRequestedSlotChange(index, conditionIndex)"/>
+                                            <CustomAutoComplete class="conditionAutoComplete" v-model="state.conditionRequestedSlotArray[index][conditionIndex]" :data_list="state.slotList" @onChange="onConditionRequestedSlotChange(index, conditionIndex)" />
                                         </div>
+                                        {{condition}}
                                     </div>
                                 </AccordionTab>
                             </Accordion>
@@ -527,5 +569,9 @@
     }
     .relative {
         position: relative
+    }
+    .conditionAutoComplete {
+        top: -3px;
+        width: 236x;
     }
 </style>
