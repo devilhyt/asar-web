@@ -68,7 +68,7 @@
 
     function onConditionTypeChange(index){
         if(props.data["condition"][index]['type'] == "slot_was_set"){
-            props.data["condition"][index]['slot'] = ""
+            props.data["condition"][index]['slot'] = temp.slot[index]
             props.data["condition"][index]['value'] = ""
         }else if(props.data["condition"][index]['type'] == "active_loop"){
             delete props.data["condition"][index]['slot']
