@@ -108,7 +108,6 @@
 
     function onActiveLoopChange(index){
         if(temp.activeLoop[index] == null){
-            temp.activeLoop[index] = ""
             props.data["condition"][index]['value'] = ""
         }
         if(props.form_list.includes(temp.activeLoop[index])){
