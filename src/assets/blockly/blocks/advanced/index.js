@@ -37,4 +37,18 @@ pythonGenerator['rasa_send'] = function(block) {
     var value_content = pythonGenerator.valueToCode(block, 'content', pythonGenerator.ORDER_ATOMIC);
     var code = 'dispatcher.utter_message(' + value_type.toString() + '='+ value_content.toString() + ')\n';
     return code;
-};
+}
+
+export default {
+    "toolbox": {
+        "kind": "category",
+        "name": "Advanced",
+        "colour": "#000000",
+        "contents": [
+            {
+                "kind": "block",
+                "type": "advanced_codeArea"
+            }
+        ]
+    }
+} 
