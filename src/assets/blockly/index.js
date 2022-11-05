@@ -1,27 +1,31 @@
-import { pythonGenerator } from 'blockly/python'
-import Blockly from 'blockly/core'
-import { toolbox } from './toolbox'
+import { pythonGenerator } from "blockly/python"
+import Blockly from "blockly/core"
+import { toolbox } from "./toolbox"
+
+Blockly.BlockColor = {}
 
 let fullToolbox = toolbox
 
 process.env.VUE_APP_BLOCKLYDIR.split(",").forEach(dir => {
     import("./blocks/" + dir).then(module => {
-        fullToolbox["contents"].push(module.default.toolbox)
+        if(module.default.hasOwnProperty("toolbox")){
+            fullToolbox["contents"].push(module.default.toolbox)
+        }
     })
 })
 
-pythonGenerator.INDENT = '    '
+pythonGenerator.INDENT = "    "
 
-let customTheme = Blockly.Theme.defineTheme('dark', {
-    'base': Blockly.Themes.Classic,
-    'componentStyles': {
-        'workspaceBackgroundColour': '#303030',
-        'toolboxBackgroundColour': '#242424',
-        'toolboxForegroundColour': '#E0E0E0',
-        'flyoutBackgroundColour': '#2b2b2b',
-        'flyoutForegroundColour': '#E0E0E0',
-        'scrollbarColour': '#505050',
-        'insertionMarkerColour': '#A0A0A0'
+let customTheme = Blockly.Theme.defineTheme("dark", {
+    "base": Blockly.Themes.Classic,
+    "componentStyles": {
+        "workspaceBackgroundColour": "#303030",
+        "toolboxBackgroundColour": "#242424",
+        "toolboxForegroundColour": "#E0E0E0",
+        "flyoutBackgroundColour": "#2b2b2b",
+        "flyoutForegroundColour": "#E0E0E0",
+        "scrollbarColour": "#505050",
+        "insertionMarkerColour": "#A0A0A0"
     }
 })
 
