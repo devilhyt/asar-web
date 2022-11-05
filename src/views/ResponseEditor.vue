@@ -73,9 +73,9 @@
                                     <Checkbox class="item-checkbox" v-model="state.useCheckBoxState['text'][index]" :binary="true" @change="onCheckBoxChange(index, 'text')" />
                                     <label class="item-title">{{ $t('text') }}</label>
                                     <div class="inner"  v-if="state.useCheckBoxState['text'][index]">
+                                        <Textarea class="text-input gap" v-model="state.responseData[index]['text']" :autoResize="true" />
                                         <CustomAutoComplete class="slotAutoComplete" v-model="state.selectedSlotArray[index]" :data_list="state.slotList" :placeholder="$t('slot')"/>
-                                        <Button class='slotBtn' @click="onInsertSlot(index)" >{{ $t('add') }}</Button><br>
-                                        <InputText class="text-input gap" v-model="state.responseData[index]['text']" />
+                                        <Button class='slotBtn' @click="onInsertSlot(index)" >{{ $t('add') }}</Button>
                                     </div>
                                 </div>
                                 <div class="item">
@@ -162,7 +162,7 @@
         font-size: 32px;
     }
     .item-checkbox {
-        top: -8px;
+        top: -10px;
         transform: scale(1.4);
     }
     .addResponseBtn {
