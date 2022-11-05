@@ -1,5 +1,5 @@
-import { pythonGenerator } from "blockly/python"
 import Blockly from "blockly/core"
+import { pythonGenerator } from "blockly/python"
 import { toolbox } from "./toolbox"
 
 Blockly.BlockColor = {}
