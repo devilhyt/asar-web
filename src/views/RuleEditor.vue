@@ -185,7 +185,7 @@
 
 <script>
     export default {
-        name: "StoryEditor",
+        name: "RuleEditor",
         created() {
             document.body.style.backgroundColor = "#333333";
         }
