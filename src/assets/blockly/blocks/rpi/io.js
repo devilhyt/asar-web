@@ -62,7 +62,7 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "rpi_io_clean_up",
-        "message0": "IO clean up",
+        "message0": "I/O clean up",
         "previousStatement": null,
         "colour": Blockly.BlockColor["RPI_IO"],
         "tooltip": "Clean up"
