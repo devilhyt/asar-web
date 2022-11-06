@@ -132,11 +132,9 @@
 
     async function onCreatingProject(){
         let response = await createProject(state.createProjectName)
-        console.log(response)
         addBackendMessage("/api.project.create.", response, {project: state.createProjectName})
         state.project_list = reactive(await getProjectList())
         state.createProjectName = ""
-
     }
 
     async function onDeletingProject(){
