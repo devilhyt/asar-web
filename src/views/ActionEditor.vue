@@ -1,7 +1,7 @@
 <script setup>
     import Blockly from 'blockly'
-    import { pythonGenerator } from 'blockly/python'
     import blocklySetup from'../assets/blockly'
+    import { pythonGenerator } from 'blockly/python'
     import { getFileData, updateFile } from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
     import { reactive, onMounted, getCurrentInstance } from 'vue'
@@ -12,10 +12,20 @@
     const { t } = useI18n()
 
     let state = reactive({
-        actionData: await getFileData(params, "actions"),
+        actionData: [],
         showCode: false,
         workspace: null,
         pythonCode: ""
+    })
+
+    function waitAllRequestFinish(){
+        return Promise.all([
+            getFileData(params, "actions")
+        ])
+    }
+    
+    await waitAllRequestFinish().then((promiseArray) => {
+        state.actionData = promiseArray[0]
     })
 
     onMounted(() => {
