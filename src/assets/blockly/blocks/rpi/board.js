@@ -43,7 +43,7 @@ pythonGenerator["rpi_board"] = function(block){
         code += "try:\n"
         code += statementCode
         code += "except Exception as e:\n"
-        code += "    print(e)\n"
+        code += "    print(e)\n\n"
     }
 
 	return code
