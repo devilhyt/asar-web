@@ -49,8 +49,8 @@
         mappingGroupArray: [],
         triMappingValueArray: [],
         mappingActionArray: [],
-        conditionActiveLoopArray: [],
-        conditionRequestedSlotArray:[]
+        conditionActiveLoopArray: [[]],
+        conditionRequestedSlotArray:[[]]
     })
 
     await waitAllRequestFinish().then((promiseArray) => {
@@ -189,6 +189,8 @@
             state.slotData['mappings'] = [{type:"from_entity"}]
         }
         state.mappingIntentTypeArray.push("not_intent")
+        state.conditionActiveLoopArray.push([])
+        state.conditionRequestedSlotArray.push([])
     }
 
     function onRemoveMapping(index){
@@ -420,7 +422,6 @@
                                             <label class="item-text">{{ $t('requestedSlot') }}</label>
                                             <CustomAutoComplete class="conditionAutoComplete" v-model="state.conditionRequestedSlotArray[index][conditionIndex]" :data_list="state.slotList" @onChange="onConditionRequestedSlotChange(index, conditionIndex)" />
                                         </div>
-                                        {{condition}}
                                     </div>
                                 </AccordionTab>
                             </Accordion>
