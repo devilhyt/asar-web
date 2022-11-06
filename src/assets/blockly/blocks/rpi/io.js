@@ -51,7 +51,7 @@ Blockly.defineBlocksWithJsonArray([
                 "type": "field_dropdown",
                 "name": "VOLTAGE",
                 "options": [
-                    ["High", "HIGN"],
+                    ["High", "HIGH"],
                     ["Low", "LOW"]
                 ]
             }
