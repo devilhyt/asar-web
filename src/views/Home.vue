@@ -1,9 +1,22 @@
 <script setup>
     import { logout, getProjectList, trainModel, loadModel, createProject, deleteProject, loadModalAction, getRasaStatus } from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
-    import { reactive, computed } from 'vue'
+    import { reactive, computed, onMounted, onBeforeUnmount } from 'vue'
     import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
+
+    let chat = document.createElement('script')
+    chat.src = 'https://unpkg.com/@rasahq/rasa-chat'
+    chat.type = 'application/javascript'
+    onMounted(()=>{
+        document.head.appendChild(chat)
+    })
+    onBeforeUnmount(()=>{
+        chat.parentNode.removeChild(chat)
+        document.getElementById('rasa-chat-widget-container').remove()
+    })
+
+    let url = window.location.origin
 
     const router = useRouter()
     const { t } = useI18n()
@@ -249,6 +262,7 @@
             </div>
         </Modal>
     </div>
+    <div id="rasa-chat-widget" :data-websocket-url="url + '/socket.io'"></div>
 </template>
 
 <script>
