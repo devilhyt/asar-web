@@ -15,6 +15,11 @@ module.exports = defineConfig({
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: { '^/api': '' },
+            },
+            '/socket.io': {
+                target: 'http://rasa.lisontech.net',
+                ws: true,
+                changeOrigin: true
             }
         }
     },
