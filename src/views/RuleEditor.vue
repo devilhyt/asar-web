@@ -1,6 +1,6 @@
 <script setup>
     import { Background, Controls, MiniMap, VueFlow, useVueFlow, graphPosToZoomedPos} from '@braks/vue-flow'
-    import { ref, reactive } from 'vue'
+    import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
     import { useRoute } from 'vue-router'
     import { getAllFileData, getFileList, updateFile , getFileData, getBultinActionList} from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
@@ -76,7 +76,7 @@
 
     const undeletable_list = ['start', 'end']
 
-    document.addEventListener('keydown', (event) => {
+    function ignoreDelete(event){
         if(event.key == "Delete"){
             if(getSelectedNodes.value.length != 0){
                 if(undeletable_list.includes(getSelectedNodes.value[0].type)){
@@ -84,7 +84,15 @@
                 }
             }
         }
-    }, false);
+    }
+    
+    onMounted(() => {
+        document.addEventListener('keydown', ignoreDelete)
+    })
+    
+    onBeforeUnmount(() => {
+        document.removeEventListener('keydown', ignoreDelete)
+    })
 
     onConnect((params) => {
         if(getNode.value(params.target).position.y < getNode.value(params.source).position.y){
