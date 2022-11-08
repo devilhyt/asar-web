@@ -11,17 +11,17 @@ module.exports = defineConfig({
     transpileDependencies: true,
     devServer: {
         proxy: {
-            '/api/': {
+            '^/api': {
                 target: 'http://asar.lisontech.net',
                 ws: true,
                 changeOrigin: true,
-                pathRewrite: { '^/api/': '' },
+                pathRewrite: { '^/api': '' },
             },
-            '/rasa/': {
+            '^/rasa': {
                 target: 'http://rasa.lisontech.net',
                 ws: true,
                 changeOrigin: true,
-                pathRewrite: { '^/rasa/': '' },
+                pathRewrite: { '^/rasa': '' },
             }
         }
     },
