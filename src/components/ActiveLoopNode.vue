@@ -10,10 +10,13 @@
 
     if(!props.data.hasOwnProperty("name")){
         props.data.name = props.form_list[0]
+        if(props.data.name === "null"){
+            props.data.name = null
+        }
     }
 
     let state = reactive({
-        form: props.data.name
+        form: String(props.data.name)
     })
 
     function onFormChange(){
@@ -22,6 +25,9 @@
         }
         if(props.form_list.includes(state.form)){
             props.data.name = state.form
+            if(props.data.name == "null"){
+                props.data.name = null
+            }
         }
     }
 </script>

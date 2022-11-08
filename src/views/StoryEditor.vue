@@ -183,7 +183,7 @@
                 <FormNode v-bind="props" :form_list="form_list" />
             </template>
             <template #node-active_loop="props">
-                <ActiveLoopNode v-bind="props" :form_list="form_list.concat('null')" />
+                <ActiveLoopNode v-bind="reactive(props)" :form_list="form_list.concat('null')" />
             </template>
         </VueFlow>
     </EditorLayout>

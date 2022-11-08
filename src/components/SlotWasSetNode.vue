@@ -67,10 +67,9 @@
                     this.value_check[index] = false
                     delete this.slots[index].value
                     this.slots[index].slot = this.slot_temp_list[index]
-                    if(this.slots[index].slot == "requested_slot"){
-                        this.slots.splice(index, 1)
-                        this.slot_temp_list.splice(index, 1)
-                        this.value_check.splice(index, 1)
+                    if(this.slot_temp_list[index] == "requested_slot"){
+                        this.value_check[index] = null
+                        this.slots[index].value = null
                     }
                 }
             },
@@ -86,11 +85,11 @@
                     }
                 }
                 if(this.value_check[index] === true){
-                    delete this.slots[index].value
-                }else if(this.value_check[index] === false){
-                    this.slots[index].value = null
-                }else{
                     this.slots[index].value = ""
+                }else if(this.value_check[index] === false){
+                    delete this.slots[index].value
+                }else{
+                    this.slots[index].value = null
                 }
             }
         }
