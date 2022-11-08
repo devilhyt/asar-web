@@ -262,7 +262,7 @@
             </div>
         </Modal>
     </div>
-    <div id="rasa-chat-widget" :data-websocket-url="url + '/socket.io'"></div>
+    <div id="rasa-chat-widget" :data-websocket-url="url + '/rasa/socket.io'"></div>
 </template>
 
 <script>
