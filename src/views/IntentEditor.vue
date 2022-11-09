@@ -51,10 +51,10 @@
         let data = state.entityData[state.mark.entity]
         state.showRole = Boolean(data.roles.length)
         state.showGroup = Boolean(data.groups.length)
-        state.temp.role = ""
-        state.temp.group = ""
-        state.mark.role = ""
-        state.mark.group = ""
+        state.temp.role = null
+        state.temp.group = null
+        state.mark.role = null
+        state.mark.group = null
     })
 
     function onEntityChange(){
@@ -177,8 +177,6 @@
         }
 
         state.intentData.examples[mark.markIndex].labels.push(label)
-        state.temp.entity = null
-        mark.entity = null
     }
 
     function onRemoveMark(index, label_index){
