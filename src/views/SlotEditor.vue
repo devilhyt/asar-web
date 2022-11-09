@@ -50,7 +50,8 @@
         triMappingValueArray: [],
         mappingActionArray: [],
         conditionActiveLoopArray: [[]],
-        conditionRequestedSlotArray:[[]]
+        conditionRequestedSlotArray:[[]],
+        accordionActive: [...Array(1000).keys()]
     })
 
     await waitAllRequestFinish().then((promiseArray) => {
@@ -362,7 +363,7 @@
                             <Button class="addMappingBtn" @click="onAddMapping">{{ $t('add') }}</Button>
                         </div>
                         <div class='inner gap'>
-                            <Accordion class='mappings-accordion' :multiple="true">
+                            <Accordion class='mappings-accordion' :multiple="true" :activeIndex="state.accordionActive">
                                 <AccordionTab v-for="(mapping, index) in state.slotData['mappings']" :key='mapping'>
                                     <template #header>
                                         <span>

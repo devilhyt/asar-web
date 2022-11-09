@@ -31,7 +31,8 @@
             group: null
         }),
         showRole: false,
-        showGroup: false
+        showGroup: false,
+        accordionActive: [...Array(1000).keys()]
     })
     state.entityList = computed(()=> Object.keys(state.entityData))
     if(Object.keys(state.intentData).includes("use_entities")){
@@ -227,7 +228,7 @@
                             <Button class="addExampleBtn" @click="onAddExample">{{ $t('add') }}</Button>
                         </div>
                         <div class="inner">
-                            <Accordion class='examples-accordion' :multiple="true">
+                            <Accordion class='examples-accordion' :multiple="true" :activeIndex="state.accordionActive">
                                 <AccordionTab v-for="(example, index) in state.intentData['examples']" :key="example">
                                     <template #header>
                                         <InputText class="example-input" type="text" v-model="example.text" @click="$event.stopPropagation()"/>
