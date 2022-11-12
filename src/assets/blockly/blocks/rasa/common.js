@@ -12,7 +12,8 @@ Blockly.defineBlocksWithJsonArray([
                 "options": [
                     ["text", "text"],
                     ["image url", "image"],
-                    ["button", "buttons"]
+                    ["button", "buttons"],
+                    ["json_message", "json_message"]
                 ]
             },
             {

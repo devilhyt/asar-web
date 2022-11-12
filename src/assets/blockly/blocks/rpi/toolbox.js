@@ -133,7 +133,7 @@ export const toolbox = {
                             "block": {
                                 "type": "text",
                                 "fields": {
-                                    "TEXT": "Hellow World !"
+                                    "TEXT": "Hello World !"
                                 }
                             }
                         }
