@@ -11,7 +11,7 @@ Blockly.defineBlocksWithJsonArray([
             {
                 "type": "field_multilinetext",
                 "name": "CODE",
-                "text": "Code area",
+                "text": "#Code area",
                 "spellcheck": false
             }
         ],
@@ -27,7 +27,7 @@ Blockly.defineBlocksWithJsonArray([
             {
                 "type": "field_multilinetext",
                 "name": "DATA",
-                "text": "Data area",
+                "text": "{    \n    \"key\": \"value\"\n}",
                 "spellcheck": false
             }
         ],

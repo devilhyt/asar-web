@@ -14,7 +14,8 @@
             "image": responseRequest.data.map(data => { return Boolean(data.image) })
         }),
         slotList: await getFileList(params, "slots"),
-        selectedSlotArray: []
+        selectedSlotArray: [],
+        accordionActive: [...Array(1000).keys()]
     })
 
     function onAddResponse(){
@@ -63,7 +64,7 @@
                             <label>{{ $t("response") }}</label>
                             <Button class="addResponseBtn" @click="onAddResponse">{{ $t('add') }}</Button>
                         </div>
-                        <Accordion class='examples-accordion inner gap' :multiple="true">
+                        <Accordion class='examples-accordion inner gap' :multiple="true" :activeIndex="state.accordionActive">
                             <AccordionTab v-for="(response, index) in state.responseData" :key="response">
                                 <template #header>
                                     {{$t("response") + " " +(index + 1)}}
