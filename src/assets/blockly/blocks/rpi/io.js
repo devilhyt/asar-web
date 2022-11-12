@@ -30,8 +30,16 @@ Blockly.defineBlocksWithJsonArray([
     },
     {
         "type": "rpi_io_read",
-        "message0": "read pin %1",
+        "message0": "read %1 pin %2",
         "args0": [
+            {
+                "type": "field_dropdown",
+                "name": "MODE",
+                "options": [
+                    ["input", "input"],
+                    ["output", "output"]
+                ]
+            },
             {
                 "type": "input_value",
                 "name": "PIN",
@@ -75,17 +83,22 @@ pythonGenerator["rpi_io_write"] = function(block){
 	var voltage = pythonGenerator.valueToCode(this, "VOLTAGE", pythonGenerator.ORDER_ATOMIC)
     var gpio = getGPIO(pin)
 
-    pythonGenerator.definitions_["io_out_" + gpio] = "GPIO.setup(" + gpio + ", GPIO.OUT)"
+    pythonGenerator.definitions_["io_" + gpio] = "GPIO.setup(" + gpio + ", GPIO.OUT)"
     var code = "GPIO.output(" + gpio + ", " + voltage + ")\n"
 
 	return code
 }
 
 pythonGenerator["rpi_io_read"] = function(block){
+    var mode = block.getFieldValue("MODE")
 	var pin = pythonGenerator.valueToCode(this, "PIN", pythonGenerator.ORDER_ATOMIC)
 	var gpio = getGPIO(pin)
 
-    pythonGenerator.definitions_["io_in_" + gpio] = "GPIO.setup(" + gpio + ", GPIO.IN)"
+    if(mode === "input"){
+        pythonGenerator.definitions_["io_" + gpio] = "GPIO.setup(" + gpio + ", GPIO.IN)"
+    }else{
+        pythonGenerator.definitions_["io_" + gpio] = "GPIO.setup(" + gpio + ", GPIO.OUT)"
+    }
     var code = "GPIO.input(" + pin + ")"
 
 	return [code, pythonGenerator.ORDER_ATOMIC]
