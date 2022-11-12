@@ -148,14 +148,14 @@ Blockly.Blocks['rasa_event_return_list_with'] = {
 pythonGenerator["rasa_event_return_list_with"] = function(block){
     var length = block.eventCount_
 
-    var code = "\nreturn [\n"
+    var code = "return [\n"
     for(let i = 0; i < length; i++){
         let event_code = pythonGenerator.valueToCode(block, "ADD" + i, pythonGenerator.ORDER_NONE) || ""
         if(!(event_code === "")){
             code += pythonGenerator.INDENT +  event_code + ",\n"
         }
     }
-    code += "]"
+    code += "]\n"
 
     return code
 }
