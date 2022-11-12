@@ -231,7 +231,7 @@
                             <Accordion class='examples-accordion' :multiple="true" :activeIndex="state.accordionActive">
                                 <AccordionTab v-for="(example, index) in state.intentData['examples']" :key="example">
                                     <template #header>
-                                        <InputText class="example-input" type="text" v-model="example.text" @click="$event.stopPropagation()"/>
+                                        <InputText class="example-input" type="text" v-model="example.text" @click="$event.stopPropagation()" @keydown="$event.stopPropagation()" @keyup="$event.stopPropagation()"/>
                                         <Button class="removeExampleBtn p-button-secondary" icon="pi pi-trash" @click="onRemoveExample(index)"/>
                                     </template>
                                     <label class="mark unselectable"> {{ $t('mark') }} : </label>
