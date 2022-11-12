@@ -99,6 +99,7 @@ export default {
     }
     .scroll-panel {
         position: absolute;
+        width: 100%;
         height: calc(100vh - 72px);
     }
     .codeBox{
