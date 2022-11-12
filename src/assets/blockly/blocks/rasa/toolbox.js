@@ -19,16 +19,6 @@ export const toolbox = {
                 {
                     "kind": "block",
                     "type": "rasa_send",
-                    "inputs": {
-                        "CONTENT": {
-                            "block": {
-                                "type": "text",
-                                "fields": {
-                                    "TEXT": "hi"
-                                }
-                            }
-                        }
-                    }
                 },
                 {
                     "kind": "block",

@@ -11,7 +11,8 @@ Blockly.defineBlocksWithJsonArray([
                 "name": "TYPE",
                 "options": [
                     ["text", "text"],
-                    ["image url", "image"]
+                    ["image url", "image"],
+                    ["button", "buttons"]
                 ]
             },
             {
@@ -48,7 +49,7 @@ pythonGenerator["rasa_send"] = function(block){
 
     var code = ""
     if(!(value_content === "")){
-        var code = "dispatcher.utter_message(" + value_type + "=" + value_content + ")\n"
+        var code = "dispatcher.utter_message(" + value_type + " = " + value_content + ")\n"
     }
     
     return code
@@ -64,3 +65,4 @@ pythonGenerator["rasa_get_slot"] = function(block){
     
     return [code, pythonGenerator.ORDER_ATOMIC]
 }
+
