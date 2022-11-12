@@ -226,7 +226,7 @@ function setBotResponse(response) {
  * @param {String} message user message
  */
 async function send(message) {
-    await new Promise((r) => setTimeout(r, 2000));
+    // await new Promise((r) => setTimeout(r, 2000));
     $.ajax({
         url: rasa_server_url,
         type: "POST",
