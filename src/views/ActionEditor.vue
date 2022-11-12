@@ -112,4 +112,7 @@ export default {
         top: 18px;
         right: 24px;
     }
+    .graphBtn {
+        z-index: 2;
+    }
 </style>
