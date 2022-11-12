@@ -5,16 +5,6 @@
     import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
 
-    let chat = document.createElement('script')
-    chat.src = 'https://unpkg.com/@rasahq/rasa-chat'
-    chat.type = 'application/javascript'
-    onMounted(()=>{
-        document.head.appendChild(chat)
-    })
-    onBeforeUnmount(()=>{
-        chat.parentNode.removeChild(chat)
-        document.getElementById('rasa-chat-widget-container').remove()
-    })
 
     let url = window.location.origin
 
@@ -262,7 +252,6 @@
             </div>
         </Modal>
     </div>
-    <div id="rasa-chat-widget" :data-websocket-url="url + '/rasa/socket.io'"></div>
 </template>
 
 <script>
