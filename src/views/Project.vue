@@ -213,7 +213,7 @@
     .scroll-panel {
         color: #E0E0E0;
         width: 100%;
-        height: calc(100vh - 72px);
+        height: calc(100vh - 118px);
     }
     .p-panelmenu:deep() {
         .p-panelmenu-header-link {
