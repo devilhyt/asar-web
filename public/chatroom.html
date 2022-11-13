@@ -33,8 +33,12 @@
 </head>
 
 <body>
-    <div id="image-container"></div>
-    <div id="audio-container" style="display: none"></div>
+    <div>
+        <img id="chat-image" class="image"></img>
+    </div>
+    <div style="display: none">
+        <audio id="chat-audio" type="audio/mpeg"></audio>
+    </div>
     <div class="container">
         <!-- Modal for rendering the charts, declare this if you want to render charts, 
          else you remove the modal -->
@@ -47,16 +51,17 @@
             <div class="chat_header">
                 <!--Add the name of the bot here -->
                 <span class="chat_header_title">Asar</span>
-                <span class="dropdown-trigger" href="#" data-target="dropdown1">
+
+                <!-- <span class="dropdown-trigger" href="#" data-target="dropdown1">
                     <i class="material-icons"> more_vert </i>
-                </span>
+                </span> -->
 
                 <!-- Dropdown menu-->
-                <ul id="dropdown1" class="dropdown-content">
-                    <!-- <li><a href="#" id="clear">Clear</a></li>
-            <li><a href="#" id="restart">Restart</a></li> -->
+                <!-- <ul id="dropdown1" class="dropdown-content">
+                    <li><a href="#" id="clear">Clear</a></li>
+                    <li><a href="#" id="restart">Restart</a></li>
                     <li><a href="#" id="close">Close</a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <!--Chatbot contents goes here -->
@@ -74,9 +79,9 @@
         </div>
 
         <!--bot profile-->
-        <div class="profile_div" id="profile_div">
+        <!-- <div class="profile_div" id="profile_div">
             <img class="imgProfile" src="/favicon.ico" />
-        </div>
+        </div> -->
 
         <!-- Bot pop-up intro -->
         <!-- <div class="tap-target" data-target="profile_div">

@@ -1,37 +1,37 @@
 body {
   font-family: "Open Sans", sans-serif;
   /* background: url("../img/body.png") no-repeat center center fixed; */
-  background-color: #333333;
+  background-color: #111111;
   background-size: cover;
 }
 
 /* ============= css related to chats =============== */
 
 .widget {
-  display: none;
-  width: 350px;
-  right: 15px;
-  height: 500px;
-  bottom: 5%;
+  /* display: none; */
+  width: calc(100vw/3);
+  right: 0px;
+  height: 100vh;
   position: fixed;
   background: #fff;
-  border-radius: 10px 10px 10px 10px;
+  /* border-radius: 10px 10px 10px 10px; */
   box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.16), 0 0px 5px 0 #00000096;
 }
 
 .chat_header {
+  position: relative;
+  text-align: center;
   height: 60px;
   background: #060dcfc7;
-  border-radius: 10px 10px 0px 0px;
+  /* border-radius: 10px 10px 0px 0px; */
   padding: 5px;
   font-size: 20px;
 }
 
 .chat_header_title {
+  position: absolute;
   color: white;
-  float: left;
-  margin-top: 3%;
-  margin-left: 35%;
+  transform: translateY(50%);
 }
 
 .chats {
@@ -862,9 +862,11 @@ video:focus {
 }
 
 .image {
-    padding: 0;
-    display: block;
-    margin: 0 auto;
+    position: absolute;
+    height: auto;
     max-height: 100%;
-    max-width: 100%;
+    max-width: calc(100vw*2/3);
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }

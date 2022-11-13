@@ -425,7 +425,6 @@ function processResponse(botResponse){
     botResponse.forEach((resp) => {
         if(resp.hasOwnProperty("custom")){
             let custom = resp['custom']
-            console.log(custom)
             if(custom.hasOwnProperty('image')){
                 putImage(custom['image'])
             }
@@ -437,26 +436,22 @@ function processResponse(botResponse){
 }
 
 function putImage(file){
-    var src = document.getElementById("image-container")
-    src.innerHTML = ""
+    var src = document.getElementById("chat-image")
     if(file === null){
+        src.src = ""
         return
     }
-    var img = document.createElement("img")
-    img.src = "/scenarios/image/" + file
-    img.className = "image"
-    src.appendChild(img)
+    src.src = "/scenarios/image/" + file
 }
 
 function playAudio(file){
-    var src = document.getElementById('audio-container')
+    var src = document.getElementById('chat-audio')
     if(file === null){
-        src.innerHTML = ""
+        src.src= ""
         return
     }
-    src.innerHTML = '<audio id="scenario_audio" src="/scenarios/audio/' + file + '" type="audio/mpeg">'
-    var audio = document.getElementById('scenario_audio')
-    audio.volume = 0.10
-    audio.loop = true
-    audio.play()
+    src.src= "/scenarios/audio/" + file
+    src.volume = 0.15
+    src.loop = true
+    src.play()
 }
