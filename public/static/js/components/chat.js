@@ -92,7 +92,10 @@ function setBotResponse(response) {
                         } else {
                             // if no markdown formatting found, render the text as it is.
                             if (!botResponse) {
-                                botResponse = `<img class="botAvatar" src="./static/img/asar_avatar.png"/><p class="botMsg">${response[i].text}</p><div class="clearfix"></div>`;
+                                let raw_text = response[i].text
+                                html_text = raw_text.replace(/(?:\r\n|\r|\n)/g, "<br>");
+                                console.log({'raw_text': raw_text, 'html_text': html_text})
+                                botResponse = `<img class="botAvatar" src="./static/img/asar_avatar.png"/><p class="botMsg">${html_text}</p><div class="clearfix"></div>`;
                             }
                         }
                         // append the bot response on to the chat screen
