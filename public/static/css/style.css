@@ -36,7 +36,7 @@ body {
 
 .chats {
   /* display: none; */
-  height: 385px;
+  height: calc(100vh - 110px);
   padding: 2px;
   border-radius: 1px;
   overflow-y: scroll;

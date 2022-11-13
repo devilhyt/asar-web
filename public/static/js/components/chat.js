@@ -242,6 +242,7 @@ async function send(message) {
 
                 // if you want the bot to start the conversation after restart
                 // customActionTrigger();
+                setBotResponse([{"text": "conversation restarted"}]);
                 return;
             }
             setBotResponse(botResponse);
