@@ -65,7 +65,7 @@
 
     state.useInitialValue = Boolean(state.slotData["initial_value"])
     state.entityList = computed(()=> Object.keys(state.entityData))
-    state.slotData["mappings"].forEach(mapping => {
+    state.slotData["mappings"].forEach((mapping, index) => {
         if(Boolean(mapping['not_intent'])){
             state.mappingIntentTypeArray.push("not_intent")
         }else{
@@ -92,8 +92,8 @@
             state.mappingActionArray.push(null)
         }
         if(Boolean(mapping['conditions'])){
-            state.conditionActiveLoopArray.push(mapping['conditions'].map(x => (x.active_loop)))
-            state.conditionRequestedSlotArray.push(mapping['conditions'].map(x => (x.requested_slot ?? null)))
+            state.conditionActiveLoopArray[index] = mapping['conditions'].map(x => x.active_loop)
+            state.conditionRequestedSlotArray[index] = mapping['conditions'].map(x => (x.requested_slot ?? null))
         }
         if(mapping['entity'] != undefined){
             state.useMappingRoleArray.push(Boolean(state.entityData[mapping['entity']].roles.length))
