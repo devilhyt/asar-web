@@ -49,7 +49,7 @@
     .locale-switch {
         position: absolute;
         top: 18px;
-        left: 24px;
+        right: 24px;
         z-index: 30;
     }
     .form-group {

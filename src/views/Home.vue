@@ -1,7 +1,7 @@
 <script setup>
     import { logout, getProjectList, trainModel, loadModel, createProject, deleteProject, loadModalAction, getRasaStatus } from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
-    import { reactive, computed, onMounted, onBeforeUnmount } from 'vue'
+    import { reactive, computed, onBeforeUnmount } from 'vue'
     import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n'
 
@@ -32,12 +32,12 @@
             }
         })
     }
-
     
     setRasaStatus()
-    setInterval(function() {
-        setRasaStatus()
-    },3000)
+    var statusInterval = setInterval(setRasaStatus, 2000)
+    onBeforeUnmount(()=>{
+        clearInterval(statusInterval)
+    })
 
 
     let request_gate = false
@@ -268,7 +268,7 @@
     .locale-switch {
         position: absolute;
         top: 18px;
-        left: 24px;
+        right: 24px;
         z-index: 30;
     }
     .topBar {
@@ -280,7 +280,7 @@
         .logoutBtn {
             position: absolute;
             top: 18px;
-            right: 24px;
+            left: 18px;
         }
     }
     .bottom {
