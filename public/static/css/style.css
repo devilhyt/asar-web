@@ -221,6 +221,14 @@ blockquote {
   margin-top: 3%;
 }
 
+.close-trigger {
+  cursor: pointer;
+  color: white;
+  margin-right: 5px;
+  float: right;
+  margin-top: 2%;
+}
+
 .dropdown-content li > a,
 .dropdown-content li > span {
   color: #060dcfc7;
