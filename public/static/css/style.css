@@ -38,10 +38,11 @@ body {
   /* display: none; */
   height: calc(100vh - 110px);
   padding: 2px;
-  border-radius: 1px;
+  /* border-radius: 1px; */
   overflow-y: scroll;
-  margin-top: 1px;
+  /* margin-top: 1px; */
   transition: 0.2s;
+  background-color: #242424;
 }
 
 div.chats::-webkit-scrollbar {
@@ -155,6 +156,7 @@ blockquote {
 }
 
 .usrInput {
+  color: #E0E0E0;
   padding: 0.5em;
   width: 80%;
   margin-left: 4%;
@@ -165,14 +167,14 @@ blockquote {
 
 .keypad {
   /* display: none;  */
-  background: white;
+  background-color: #202020;
   height: 50px;
   position: absolute;
   bottom: 0px;
   width: 100%;
   padding: 5px;
-  border-radius: 0px 0px 10px 10px;
-  border-top: 1px solid #e3e7ee;
+  /* border-radius: 0px 0px 10px 10px; */
+  /* border-top: 1px solid #e3e7ee; */
 }
 
 #sendButton {
@@ -186,7 +188,7 @@ blockquote {
   padding: 5px;
   font-size: 20px;
   cursor: pointer;
-  color: #060dcfc7;
+  color: #E0E0E0;
 }
 
 .imgProfile {
@@ -226,7 +228,7 @@ blockquote {
   color: white;
   margin-right: 5px;
   float: right;
-  margin-top: 2%;
+  margin-top: 3%;
 }
 
 .dropdown-content li > a,
