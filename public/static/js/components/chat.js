@@ -427,13 +427,13 @@ $("#sendButton").on("click", (e) => {
 
 function processResponse(botResponse){
     botResponse.forEach((resp) => {
-        if(resp.hasOwnProperty("custom")){
-            let custom = resp['custom']
+        if(resp.hasOwnProperty("custom") && resp["custom"].hasOwnProperty("scenarios")){
+            let custom = resp['custom']["scenarios"]
             if(custom.hasOwnProperty('image')){
-                putImage(custom['image'])
+                putImage(custom["image"])
             }
-            if(custom.hasOwnProperty('audio')){
-                playAudio(custom['audio'])
+            if(custom.hasOwnProperty("audio")){
+                playAudio(custom["audio"])
             }
         }
     })

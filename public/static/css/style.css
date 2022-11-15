@@ -42,7 +42,7 @@ body {
   overflow-y: scroll;
   /* margin-top: 1px; */
   transition: 0.2s;
-  background-color: #242424;
+  background-color: #2B2B2B;
 }
 
 div.chats::-webkit-scrollbar {
