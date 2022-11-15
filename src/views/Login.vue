@@ -1,5 +1,8 @@
 <template>
     <LocaleSwitch class="locale-switch" />
+    <a href="/chatroom.html">
+        <Button class='chatBtn' a="/test">{{ $t('chatRoom') }}</Button>
+    </a>
     <div class="form-group">
         <div class='form-title' style="font-weight:bold">Asar</div>
         <br>
@@ -74,5 +77,11 @@
     }
     .p-input-icon-right:deep(.p-inputtext) {
         padding-right: 0.429rem;
+    }
+    .chatBtn {
+        position: flex;
+        float: left;
+        left: 24px;
+        top: 18px;
     }
 </style>

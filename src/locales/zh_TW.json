@@ -65,6 +65,7 @@
     "active_loop": "進行中的迴圈",
     "serverStatus": "伺服器狀態",
     "autoFill": "自動填充",
+    "chatRoom": "聊天室",
     "onConversationStart": "僅在對話開始時",
     "waitForUserInput": "等待使用者輸入",
     "requestedSlot": "槽位需求",

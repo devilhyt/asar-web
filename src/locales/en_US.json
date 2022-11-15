@@ -65,6 +65,7 @@
     "active_loop": "Active Loop",
     "serverStatus": "Server Status",
     "autoFill": "Auto Fill",
+    "chatRoom": "Chatroom",
     "onConversationStart": "On Conversation Start",
     "waitForUserInput": "Wait For User Input",
     "requestedSlot": "Requested Slot",
