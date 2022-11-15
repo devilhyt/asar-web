@@ -874,8 +874,7 @@ video:focus {
 .image {
     position: absolute;
     height: auto;
-    max-height: 100%;
-    max-width: calc(100vw*2/3);
+    width: 70%;
     top: 0;
     bottom: 0;
     margin: auto;
