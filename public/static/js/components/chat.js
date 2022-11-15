@@ -64,7 +64,7 @@ function setBotResponse(response) {
                             .replaceAll("<strong>", "<b>")
                             .replaceAll("</strong>", "</b>");
                         html = html.replace(/(?:\r\n|\r|\n)/g, "<br>");
-                        console.log(html);
+                        // console.log(html);
                         // check for blockquotes
                         if (html.includes("<blockquote>")) {
                             html = html.replaceAll("<br>", "");
@@ -94,7 +94,7 @@ function setBotResponse(response) {
                             if (!botResponse) {
                                 let raw_text = response[i].text
                                 html_text = raw_text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-                                console.log({'raw_text': raw_text, 'html_text': html_text})
+                                // console.log({'raw_text': raw_text, 'html_text': html_text})
                                 botResponse = `<img class="botAvatar" src="./static/img/asar_avatar.png"/><p class="botMsg">${html_text}</p><div class="clearfix"></div>`;
                             }
                         }
@@ -236,7 +236,7 @@ async function send(message) {
         contentType: "application/json",
         data: JSON.stringify({ message, sender: sender_id }),
         success(botResponse, status) {
-            console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
+            // console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
             
             processResponse(botResponse);
             // if user wants to restart the chat and clear the existing chat contents
@@ -282,7 +282,7 @@ function actionTrigger() {
             confidence: "0.98",
         }),
         success(botResponse, status) {
-            console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
+            // console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
 
             if (Object.hasOwnProperty.call(botResponse, "messages")) {
                 setBotResponse(botResponse.messages);
@@ -320,7 +320,7 @@ function customActionTrigger() {
             },
         }),
         success(botResponse, status) {
-            console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
+            // console.log("Response from Rasa: ", botResponse, "\nStatus: ", status);
 
             if (Object.hasOwnProperty.call(botResponse, "responses")) {
                 setBotResponse(botResponse.responses);
