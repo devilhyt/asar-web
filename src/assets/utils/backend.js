@@ -135,8 +135,14 @@ async function updateLocalConfig(projectName, text){
     return response
 }
 
-async function getBultinActionList(params){
+async function getBuiltinActionList(params){
     const route = 'projects/' + params.projectName + "/actions?mode=builtin"
+    let response = await apiFetch({method: 'GET', route: route});
+    return response
+}
+
+async function getBuiltinIntentList(params){
+    const route = 'projects/' + params.projectName + "/intents?mode=builtin"
     let response = await apiFetch({method: 'GET', route: route});
     return response
 }
@@ -178,7 +184,8 @@ module.exports = {
     getAllFileData: getAllFileData,
     getLocalConfig: getLocalConfig,
     updateLocalConfig: updateLocalConfig,
-    getBultinActionList: getBultinActionList,
+    getBuiltinActionList: getBuiltinActionList,
+    getBuiltinIntentList: getBuiltinIntentList,
     getRasaStatus: getRasaStatus,
     trainModel: trainModel,
     loadModel: loadModel,

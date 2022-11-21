@@ -2,7 +2,7 @@
     import { Background, Controls, MiniMap, VueFlow, useVueFlow, graphPosToZoomedPos} from '@braks/vue-flow'
     import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
     import { useRoute } from 'vue-router'
-    import { getAllFileData, getFileList, updateFile , getFileData, getBultinActionList} from '../assets/utils/backend.js'
+    import { getAllFileData, getFileList, updateFile , getFileData, getBuiltinActionList, getBuiltinIntentList} from '../assets/utils/backend.js'
     import { addBackendMessage } from '../assets/utils/message.js'
     import { nanoid } from 'nanoid'
 
@@ -14,26 +14,23 @@
             getAllFileData(params, "entities"),
             getFileList(params, "actions"),
             getFileList(params, "responses"),
-            getBultinActionList(params),
+            getBuiltinActionList(params),
+            getBuiltinIntentList(params),
             getFileList(params, "slots"),
             getFileList(params, "forms")
         ])
     }
 
-    var intent_list, entity_data, custom_action_list, response_list, bultin_action_list, slot_list, form_list
+    var custom_intent_list, entity_data, custom_action_list, response_list, builtin_action_list, builtin_intent_list, slot_list, form_list
 
     await waitAllRequestFinish().then((promiseArray) => {
-        intent_list = promiseArray[0]
-        entity_data = promiseArray[1]
-        custom_action_list = promiseArray[2]
-        response_list = promiseArray[3]
-        bultin_action_list = promiseArray[4]
-        slot_list = promiseArray[5].concat('requested_slot')
-        form_list = promiseArray[6]
+        [custom_intent_list, entity_data, custom_action_list, response_list, builtin_action_list, builtin_intent_list, slot_list, form_list] = promiseArray
     })
 
+    slot_list.push("requested_slot")    
     const entity_list = Object.keys(entity_data)
-    const action_list = custom_action_list.concat(bultin_action_list)
+    const action_list = custom_action_list.concat(builtin_action_list)
+    const intent_list = custom_intent_list.concat(builtin_intent_list)
 
     var selectedItem
 
