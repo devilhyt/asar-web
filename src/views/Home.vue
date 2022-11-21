@@ -103,10 +103,10 @@
                         state.onDeletingProject = true
                     }
                 },
-                {
-                    label: t('export'),
-                    icon:'pi pi-fw pi-external-link'
-                }
+                // {
+                //     label: t('export'),
+                //     icon:'pi pi-fw pi-external-link'
+                // }
             ]
         }),
         reactive({
