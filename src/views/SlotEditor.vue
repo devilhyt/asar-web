@@ -338,10 +338,10 @@
                                 <Checkbox class='checkBox' v-model="state.slotData['influence_conversation']" :binary="true" />
                                 <label class='checkText'>{{ $t('influenceConversation') }}</label>
                             </div>
-                            <div v-if="state.useInfluenceConversation">
+                            <!-- <div v-if="state.useInfluenceConversation">
                                 <Checkbox class='checkBox' v-model="state.slotData['auto_fill']" :binary="true" />
                                 <label class='checkText'>{{ $t('autoFill') }}</label>
-                            </div>
+                            </div> -->
                             <div v-if="state.useMinMaxValue">
                                 <label class='item-text inner'>{{ $t('maxValue') }}</label>
                                 <InputNumber class='value-input' v-model="temp.maxValue" mode="decimal" :useGrouping="false" :maxFractionDigits="10" @input="onMaxValueChange"/><br>
